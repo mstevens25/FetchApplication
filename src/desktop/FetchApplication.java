@@ -1,3 +1,5 @@
+package desktop;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,7 +26,7 @@ public class FetchApplication extends javax.swing.JFrame {
             int ysize = (int) tk.getScreenSize().getHeight();
             
         this.setSize(xsize, ysize);
-        
+        desktop.setBounds(this.getBounds());
         Login initLogin = new Login();
         this.add(initLogin);
         
@@ -39,6 +41,7 @@ public class FetchApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        desktop = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -55,6 +58,19 @@ public class FetchApplication extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        desktop.setPreferredSize(null);
+
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
+        desktop.setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1109, Short.MAX_VALUE)
+        );
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 593, Short.MAX_VALUE)
+        );
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -123,12 +139,18 @@ public class FetchApplication extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1655, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 546, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        desktop.getAccessibleContext().setAccessibleParent(desktop);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,7 +177,6 @@ public class FetchApplication extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FetchApplication().setVisible(true);
-                
             }
         });
     }
@@ -166,6 +187,7 @@ public class FetchApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
@@ -177,4 +199,8 @@ public class FetchApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
+    public void addCSFrame(){
+        CSInterface csFrame = new CSInterface();
+        this.add(csFrame);
+    }
 }

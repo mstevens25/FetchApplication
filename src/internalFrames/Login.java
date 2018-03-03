@@ -5,9 +5,11 @@
  */
 package internalFrames;
 import inputValidation.*;
+import desktop.*;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -136,11 +138,14 @@ public class Login extends javax.swing.JInternalFrame {
         String email = txtUsername.getText();
         chkEmail = loginVal.validate(email);
 
-        if(chkEmail) {    
-            txtUsername.setText("Email Valid");
-            pwtPassword.setText("");
+        if(chkEmail) { 
+            CSInterface csFrame = new CSInterface();
+            this.getContentPane().add(csFrame);
+            this.dispose();
         } else {  
             JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
+            txtUsername.setText("Email");
+            pwtPassword.setText("");
         }        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
