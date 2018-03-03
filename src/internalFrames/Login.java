@@ -132,19 +132,16 @@ public class Login extends javax.swing.JInternalFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
    
-        boolean chkEmail = loginVal.validate(txtUsername.getText());
-        
-        if(chkEmail = true){
-            
-            
-        } else {
-            
-            JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
-            
-            txtUsername.setText("Email");
+        boolean chkEmail;
+        String email = txtUsername.getText();
+        chkEmail = loginVal.validate(email);
+
+        if(chkEmail) {    
+            txtUsername.setText("Email Valid");
             pwtPassword.setText("");
-        } 
-        
+        } else {  
+            JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
+        }        
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
