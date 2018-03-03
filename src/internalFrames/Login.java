@@ -4,16 +4,18 @@
  * and open the template in the editor.
  */
 package internalFrames;
+import inputValidation.*;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Matt
  */
 public class Login extends javax.swing.JInternalFrame {
-
+    EmailValidator loginVal = new EmailValidator();
     /**
      * Creates new form Login
      */
@@ -43,8 +45,8 @@ public class Login extends javax.swing.JInternalFrame {
         txtUsername = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
         pwtPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         setVisible(true);
 
@@ -64,18 +66,18 @@ public class Login extends javax.swing.JInternalFrame {
         lblPassword.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblPassword.setText("Password:");
 
-        jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        jButton2.setText("Reset");
-        jButton2.setMaximumSize(new java.awt.Dimension(77, 25));
-        jButton2.setMinimumSize(new java.awt.Dimension(77, 25));
+        btnReset.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setMaximumSize(new java.awt.Dimension(77, 25));
+        btnReset.setMinimumSize(new java.awt.Dimension(77, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,9 +102,9 @@ public class Login extends javax.swing.JInternalFrame {
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSubmit)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
@@ -120,18 +122,30 @@ public class Login extends javax.swing.JInternalFrame {
                     .addComponent(pwtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSubmit)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        txtUsername.setText("Email");
-        pwtPassword.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+   
+        boolean chkEmail = loginVal.validate(txtUsername.getText());
+        
+        if(chkEmail = true){
+            
+            
+        } else {
+            
+            JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
+            
+            txtUsername.setText("Email");
+            pwtPassword.setText("");
+        } 
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
         txtUsername.setText("");
@@ -139,8 +153,8 @@ public class Login extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;
