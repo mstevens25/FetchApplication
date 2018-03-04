@@ -7,6 +7,7 @@ package internalFrames;
 import appClasses.*;
 
 import java.awt.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Matt
@@ -130,6 +131,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         btnReset.setText("Reset");
         btnReset.setNextFocusableComponent(txtFirstName);
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,7 +223,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
                     .addComponent(lblPhone)
                     .addComponent(lblState)
                     .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -282,9 +287,18 @@ public class CSInterface extends javax.swing.JInternalFrame {
         
         String selectedState =  (String) cmbState.getSelectedItem();
         
-        Customer csData = new Customer(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(), 
+        if (selectedState == "--") selectedState = "";
+        
+        if (selectedState == "") {
+            JOptionPane.showMessageDialog(null, "Unable to Add New Customer", "Result", JOptionPane.OK_OPTION);
+        } else {
+            
+            Customer tempCust = new Customer(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(), 
                                             txtFirstName.getText(), txtMInitial.getText(), txtLastName.getText(), txtAddress1.getText(),
                                             txtAddress2.getText(), txtCity.getText(), selectedState, txtZip.getText());
+            
+            Customer.addCustomer(tempCust);
+        }
         
         txtFirstName.setText("");
         txtMInitial.setText("");
@@ -297,9 +311,21 @@ public class CSInterface extends javax.swing.JInternalFrame {
         txtEmail.setText("");
         txtPassword.setText("");
         txtPhone.setText("");
-        
-        Customer.addCustomer(csData);
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtFirstName.setText("");
+        txtMInitial.setText("");
+        txtLastName.setText("");
+        txtAddress1.setText("");
+        txtAddress2.setText("");
+        txtCity.setText("");
+        cmbState.setSelectedIndex(0);
+        txtZip.setText("");
+        txtEmail.setText("");
+        txtPassword.setText("");
+        txtPhone.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

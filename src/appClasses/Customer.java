@@ -10,6 +10,7 @@ package appClasses;
  * @author Matt
  */
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author mattm
@@ -92,11 +93,25 @@ public class Customer {
             stmt.setString(10, cust.getstate());
             stmt.setString(11, cust.getzip());
             
-            stmt.executeUpdate();
-
+            int i = stmt.executeUpdate();
+            
+            if(i>0) {
+                JOptionPane.showMessageDialog(null, "New Customer Added Successfully.", "Result", JOptionPane.OK_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Unable to Add New Customer", "Result", JOptionPane.OK_OPTION);
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
             return;
-        }  
+        } finally{
+        
+            try{
+                if(conn != null)
+                conn.close();
+            } catch(SQLException se){
+                se.printStackTrace();
+        }
     }
+  }
 }
