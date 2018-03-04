@@ -8,6 +8,7 @@ package desktop;
 import java.awt.Toolkit;
 import javax.swing.*;
 import internalFrames.*;
+import java.awt.BorderLayout;
 /**
  *
  * @author Matt
@@ -21,15 +22,18 @@ public class FetchApplication extends javax.swing.JFrame {
         initComponents();
 
         
-        Toolkit tk = Toolkit.getDefaultToolkit();
+        /*Toolkit tk = Toolkit.getDefaultToolkit();
             int xsize = (int) tk.getScreenSize().getWidth();
             int ysize = (int) tk.getScreenSize().getHeight();
             
-        this.setSize(xsize, ysize);
+        this.setSize(xsize, ysize);*/
+        
+        this.setLayout(new BorderLayout());      
+        this.add(desktop, BorderLayout.CENTER);      
+        this.setExtendedState(MAXIMIZED_BOTH);     
         desktop.setBounds(this.getBounds());
         Login initLogin = new Login();
-        this.add(initLogin);
-        
+        desktop.add(initLogin);
     }
 
     /**

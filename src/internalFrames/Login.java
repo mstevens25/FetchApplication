@@ -31,6 +31,7 @@ public class Login extends javax.swing.JInternalFrame {
         Dimension frameSize = this.getSize();
             
         this.setLocation((xsize - frameSize.width)/2, (ysize - frameSize.height)/2);
+        this.setVisible(true);
     }
 
     /**
@@ -140,7 +141,7 @@ public class Login extends javax.swing.JInternalFrame {
 
         if(chkEmail) { 
             CSInterface csFrame = new CSInterface();
-            this.getContentPane().add(csFrame);
+            this.getDesktopPane().add(csFrame);
             this.dispose();
         } else {  
             JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
