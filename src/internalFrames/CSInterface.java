@@ -64,39 +64,63 @@ public class CSInterface extends javax.swing.JInternalFrame {
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
 
-        setFocusable(false);
+        setFocusTraversalPolicyProvider(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setFocusable(false);
+        jPanel1.setFocusTraversalPolicyProvider(true);
+        jPanel1.setNextFocusableComponent(txtFirstName);
 
         lblFirstName.setText("First Name:");
 
+        txtFirstName.setFocusCycleRoot(true);
+        txtFirstName.setNextFocusableComponent(txtMInitial);
+
         lblMInital.setText("Middle Initial:");
+
+        txtMInitial.setNextFocusableComponent(txtLastName);
 
         lblLastName.setText("Last Name:");
 
+        txtLastName.setNextFocusableComponent(txtPhone);
+
         lblPhone.setText("Phone:");
+
+        txtPhone.setNextFocusableComponent(txtEmail);
 
         lblEmail.setText("Email:");
 
+        txtEmail.setNextFocusableComponent(txtPassword);
+
         lblPassword.setText("Password:");
+
+        txtPassword.setNextFocusableComponent(txtAddress1);
 
         lblAddress1.setText("Address 1:");
 
+        txtAddress1.setNextFocusableComponent(txtAddress2);
+
         lblAddress2.setText("Address 2:");
 
+        txtAddress2.setNextFocusableComponent(txtCity);
+
         lblCity.setText("City:");
+
+        txtCity.setNextFocusableComponent(cmbState);
 
         lblState.setText("State:");
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
+        cmbState.setNextFocusableComponent(txtZip);
 
         lblZip.setText("ZIP:");
+
+        txtZip.setNextFocusableComponent(btnSubmit);
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         lblTitle.setText("Add Customer");
 
         btnSubmit.setText("Submit");
+        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -104,6 +128,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         });
 
         btnReset.setText("Reset");
+        btnReset.setNextFocusableComponent(txtFirstName);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

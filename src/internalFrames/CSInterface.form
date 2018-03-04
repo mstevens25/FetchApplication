@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
-    <Property name="focusable" type="boolean" value="false"/>
+    <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -47,7 +47,10 @@
             <BevelBorder/>
           </Border>
         </Property>
-        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="txtFirstName"/>
+        </Property>
       </Properties>
 
       <Layout>
@@ -198,6 +201,12 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFirstName">
+          <Properties>
+            <Property name="focusCycleRoot" type="boolean" value="true"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtMInitial"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblMInital">
           <Properties>
@@ -205,6 +214,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMInitial">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtLastName"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblLastName">
           <Properties>
@@ -212,6 +226,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtLastName">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtPhone"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPhone">
           <Properties>
@@ -219,6 +238,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPhone">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtEmail"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
@@ -226,6 +250,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtPassword"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPassword">
           <Properties>
@@ -233,6 +262,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPassword">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtAddress1"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblAddress1">
           <Properties>
@@ -240,6 +274,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAddress1">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtAddress2"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblAddress2">
           <Properties>
@@ -247,6 +286,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAddress2">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtCity"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCity">
           <Properties>
@@ -254,6 +298,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCity">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="cmbState"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblState">
           <Properties>
@@ -317,6 +366,9 @@
                 <StringItem index="50" value="WY"/>
               </StringArray>
             </Property>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtZip"/>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -328,6 +380,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtZip">
+          <Properties>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="btnSubmit"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitle">
           <Properties>
@@ -340,6 +397,9 @@
         <Component class="javax.swing.JButton" name="btnSubmit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Submit"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="btnReset"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
@@ -348,6 +408,9 @@
         <Component class="javax.swing.JButton" name="btnReset">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reset"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="txtFirstName"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
