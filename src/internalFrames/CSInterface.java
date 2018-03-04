@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package internalFrames;
+import appClasses.*;
 
-import java.awt.Toolkit;
-
+import java.awt.*;
 /**
  *
  * @author Matt
@@ -24,6 +24,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
             int ysize = (int) tk.getScreenSize().getHeight();
             
         this.setSize(xsize, ysize);
+    
         this.setVisible(true);
     }
 
@@ -84,17 +85,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         lblAddress2.setText("Address 2:");
 
-        txtAddress2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAddress2ActionPerformed(evt);
-            }
-        });
-
         lblCity.setText("City:");
 
         lblState.setText("State:");
 
-        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
+        cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
 
         lblZip.setText("ZIP:");
 
@@ -102,6 +97,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblTitle.setText("Add Customer");
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("Reset");
 
@@ -235,9 +235,28 @@ public class CSInterface extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtAddress2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddress2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAddress2ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        
+        String selectedState =  (String) cmbState.getSelectedItem();
+        
+        Customer csData = new Customer(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(), 
+                                            txtFirstName.getText(), txtMInitial.getText(), txtLastName.getText(), txtAddress1.getText(),
+                                            txtAddress2.getText(), txtCity.getText(), selectedState, txtZip.getText());
+        
+        txtFirstName.setText("");
+        txtMInitial.setText("");
+        txtLastName.setText("");
+        txtAddress1.setText("");
+        txtAddress2.setText("");
+        txtCity.setText("");
+        cmbState.setSelectedIndex(0);
+        txtZip.setText("");
+        txtEmail.setText("");
+        txtPassword.setText("");
+        txtPhone.setText("");
+        
+        Customer.addCustomer(csData);
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

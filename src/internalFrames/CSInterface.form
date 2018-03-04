@@ -247,9 +247,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAddress2">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAddress2ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCity">
           <Properties>
@@ -266,57 +263,58 @@
         <Component class="javax.swing.JComboBox" name="cmbState">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="50">
-                <StringItem index="0" value="AL"/>
-                <StringItem index="1" value="AK"/>
-                <StringItem index="2" value="AZ"/>
-                <StringItem index="3" value="AR"/>
-                <StringItem index="4" value="CA"/>
-                <StringItem index="5" value="CO"/>
-                <StringItem index="6" value="CT"/>
-                <StringItem index="7" value="DE"/>
-                <StringItem index="8" value="FL"/>
-                <StringItem index="9" value="GA"/>
-                <StringItem index="10" value="HI"/>
-                <StringItem index="11" value="ID"/>
-                <StringItem index="12" value="IL"/>
-                <StringItem index="13" value="IN"/>
-                <StringItem index="14" value="IA"/>
-                <StringItem index="15" value="KS"/>
-                <StringItem index="16" value="KY"/>
-                <StringItem index="17" value="LA"/>
-                <StringItem index="18" value="ME"/>
-                <StringItem index="19" value="MD"/>
-                <StringItem index="20" value="MA"/>
-                <StringItem index="21" value="MI"/>
-                <StringItem index="22" value="MN"/>
-                <StringItem index="23" value="MS"/>
-                <StringItem index="24" value="MO"/>
-                <StringItem index="25" value="MT"/>
-                <StringItem index="26" value="NE"/>
-                <StringItem index="27" value="NV"/>
-                <StringItem index="28" value="NH"/>
-                <StringItem index="29" value="NJ"/>
-                <StringItem index="30" value="NM"/>
-                <StringItem index="31" value="NY"/>
-                <StringItem index="32" value="NC"/>
-                <StringItem index="33" value="ND"/>
-                <StringItem index="34" value="OH"/>
-                <StringItem index="35" value="OK"/>
-                <StringItem index="36" value="OR"/>
-                <StringItem index="37" value="PA"/>
-                <StringItem index="38" value="RI"/>
-                <StringItem index="39" value="SC"/>
-                <StringItem index="40" value="SD"/>
-                <StringItem index="41" value="TN"/>
-                <StringItem index="42" value="TX"/>
-                <StringItem index="43" value="UT"/>
-                <StringItem index="44" value="VT"/>
-                <StringItem index="45" value="VA"/>
-                <StringItem index="46" value="WA"/>
-                <StringItem index="47" value="WV"/>
-                <StringItem index="48" value="WI"/>
-                <StringItem index="49" value="WY"/>
+              <StringArray count="51">
+                <StringItem index="0" value="--"/>
+                <StringItem index="1" value="AL"/>
+                <StringItem index="2" value="AK"/>
+                <StringItem index="3" value="AZ"/>
+                <StringItem index="4" value="AR"/>
+                <StringItem index="5" value="CA"/>
+                <StringItem index="6" value="CO"/>
+                <StringItem index="7" value="CT"/>
+                <StringItem index="8" value="DE"/>
+                <StringItem index="9" value="FL"/>
+                <StringItem index="10" value="GA"/>
+                <StringItem index="11" value="HI"/>
+                <StringItem index="12" value="ID"/>
+                <StringItem index="13" value="IL"/>
+                <StringItem index="14" value="IN"/>
+                <StringItem index="15" value="IA"/>
+                <StringItem index="16" value="KS"/>
+                <StringItem index="17" value="KY"/>
+                <StringItem index="18" value="LA"/>
+                <StringItem index="19" value="ME"/>
+                <StringItem index="20" value="MD"/>
+                <StringItem index="21" value="MA"/>
+                <StringItem index="22" value="MI"/>
+                <StringItem index="23" value="MN"/>
+                <StringItem index="24" value="MS"/>
+                <StringItem index="25" value="MO"/>
+                <StringItem index="26" value="MT"/>
+                <StringItem index="27" value="NE"/>
+                <StringItem index="28" value="NV"/>
+                <StringItem index="29" value="NH"/>
+                <StringItem index="30" value="NJ"/>
+                <StringItem index="31" value="NM"/>
+                <StringItem index="32" value="NY"/>
+                <StringItem index="33" value="NC"/>
+                <StringItem index="34" value="ND"/>
+                <StringItem index="35" value="OH"/>
+                <StringItem index="36" value="OK"/>
+                <StringItem index="37" value="OR"/>
+                <StringItem index="38" value="PA"/>
+                <StringItem index="39" value="RI"/>
+                <StringItem index="40" value="SC"/>
+                <StringItem index="41" value="SD"/>
+                <StringItem index="42" value="TN"/>
+                <StringItem index="43" value="TX"/>
+                <StringItem index="44" value="UT"/>
+                <StringItem index="45" value="VT"/>
+                <StringItem index="46" value="VA"/>
+                <StringItem index="47" value="WA"/>
+                <StringItem index="48" value="WV"/>
+                <StringItem index="49" value="WI"/>
+                <StringItem index="50" value="WY"/>
               </StringArray>
             </Property>
           </Properties>
@@ -343,6 +341,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Submit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnReset">
           <Properties>
