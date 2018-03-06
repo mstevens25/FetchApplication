@@ -74,9 +74,11 @@ public class Customer {
     
     
     public static void addCustomer(Customer cust) {
+        
         Connection conn = null;
+           
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fetchdb", "root", "mysqlpw");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fetchdb", "root", "mysqlpw"); 
             PreparedStatement stmt = conn.prepareStatement("insert into customer"
                 +    " (email, pass, phone, firstName, middleInitial, lastName, addressLine1, addressLine2, city, state, zip)"
                 +    " values (?,?,?,?,?,?,?,?,?,?,?)");
