@@ -7,7 +7,9 @@ package internalFrames;
 import appClasses.*;
 
 import java.awt.*;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 /**
  *
  * @author Matt
@@ -64,8 +66,10 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblTitle = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jpnTable = new javax.swing.JPanel();
+        btnCustTbl = new javax.swing.JButton();
 
+        setClosable(true);
         setFocusTraversalPolicyProvider(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -248,17 +252,30 @@ public class CSInterface extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40))))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jpnTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1810, Short.MAX_VALUE)
+        btnCustTbl.setText("Customer Table");
+        btnCustTbl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustTblActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
+        jpnTable.setLayout(jpnTableLayout);
+        jpnTableLayout.setHorizontalGroup(
+            jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCustTbl)
+                .addContainerGap(1683, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 343, Short.MAX_VALUE)
+        jpnTableLayout.setVerticalGroup(
+            jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTableLayout.createSequentialGroup()
+                .addContainerGap(339, Short.MAX_VALUE)
+                .addComponent(btnCustTbl)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,7 +285,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -278,8 +295,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addComponent(jpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -329,13 +346,24 @@ public class CSInterface extends javax.swing.JInternalFrame {
         txtPhone.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
+    private void btnCustTblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustTblActionPerformed
+        TableConnection custTbl = new TableConnection();
+        custTbl.pullData();
+    }//GEN-LAST:event_btnCustTblActionPerformed
 
+    public static void addTable(Vector dbData, Vector columns) {
+        JTable table = new JTable(dbData,columns);
+        table.setVisible(true);
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCustTbl;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cmbState;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jpnTable;
     private javax.swing.JLabel lblAddress1;
     private javax.swing.JLabel lblAddress2;
     private javax.swing.JLabel lblCity;
