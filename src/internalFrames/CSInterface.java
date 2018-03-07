@@ -9,6 +9,8 @@ import appClasses.*;
 import java.awt.*;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 /**
  *
@@ -354,6 +356,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
     public static void addTable(Vector dbData, Vector columns) {
         JTable table = new JTable(dbData,columns);
         table.setVisible(true);
+        
+
+        JScrollPane spTable = new JScrollPane(table);
+        JPanel panel = new JPanel();
+        panel.add(spTable);
     }
     
     
