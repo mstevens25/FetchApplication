@@ -7,7 +7,10 @@ package internalFrames;
 import appClasses.*;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.Vector;
+import javax.sql.RowSetEvent;
+import javax.sql.rowset.CachedRowSet;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -68,8 +71,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblTitle = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jpnTable = new javax.swing.JPanel();
-        btnCustTbl = new javax.swing.JButton();
 
         setClosable(true);
         setFocusTraversalPolicyProvider(true);
@@ -254,51 +255,21 @@ public class CSInterface extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40))))
         );
 
-        jpnTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnCustTbl.setText("Customer Table");
-        btnCustTbl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustTblActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpnTableLayout = new javax.swing.GroupLayout(jpnTable);
-        jpnTable.setLayout(jpnTableLayout);
-        jpnTableLayout.setHorizontalGroup(
-            jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCustTbl)
-                .addContainerGap(1683, Short.MAX_VALUE))
-        );
-        jpnTableLayout.setVerticalGroup(
-            jpnTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTableLayout.createSequentialGroup()
-                .addContainerGap(339, Short.MAX_VALUE)
-                .addComponent(btnCustTbl)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1196, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(507, Short.MAX_VALUE))
         );
 
         pack();
@@ -348,11 +319,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
         txtPhone.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private void btnCustTblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustTblActionPerformed
-        TableConnection custTbl = new TableConnection();
-        custTbl.pullData();
-    }//GEN-LAST:event_btnCustTblActionPerformed
-
     public static void addTable(Vector dbData, Vector columns) {
         JTable table = new JTable(dbData,columns);
         table.setVisible(true);
@@ -363,14 +329,38 @@ public class CSInterface extends javax.swing.JInternalFrame {
         panel.add(spTable);
     }
     
+    public void rowChanged(RowSetEvent event) {
+
+        CachedRowSet currentRowSet = this.myCoffeesTableModel.customerRowSet;
+
+        try {
+            currentRowSet.moveToCurrentRow();
+            myCoffeesTableModel = new CoffeesTableModel(myCoffeesTableModel.getCoffeesRowSet());
+            table.setModel(myCoffeesTableModel);
+
+        } catch (SQLException ex) {
+
+            JDBCTutorialUtilities.printSQLException(ex);
+
+            // Display the error in a dialog box.
+
+            JOptionPane.showMessageDialog(
+                CoffeesFrame.this,
+                new String[] {
+                    // Display a 2-line message
+                    ex.getClass().getName() + ": ",
+                    ex.getMessage()
+                }
+            );
+        }
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCustTbl;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cmbState;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jpnTable;
     private javax.swing.JLabel lblAddress1;
     private javax.swing.JLabel lblAddress2;
     private javax.swing.JLabel lblCity;

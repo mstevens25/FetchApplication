@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author mattm
  */
 public class TableConnection {
-    
+
     
 public static void pullData(){  
     
