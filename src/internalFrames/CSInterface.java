@@ -261,6 +261,12 @@ public class CSInterface extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40))))
         );
 
+        jScrollPane1.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                csInterfaceClosed(evt);
+            }
+        });
+
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, customerList, tblCustomer);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${customerId}"));
         columnBinding.setColumnName("Customer Id");
@@ -300,7 +306,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
         columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-
         jScrollPane1.setViewportView(tblCustomer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -321,7 +326,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -372,6 +377,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
         txtPassword.setText("");
         txtPhone.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void csInterfaceClosed(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_csInterfaceClosed
+        Login initLogin = new Login();
+        this.getDesktopPane().add(initLogin);
+    }//GEN-LAST:event_csInterfaceClosed
 
     
 
