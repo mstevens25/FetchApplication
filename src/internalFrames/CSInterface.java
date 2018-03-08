@@ -44,7 +44,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("fetchdb?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        customerQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Customer c");
+        customerList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerQuery.getResultList();
         jPanel1 = new javax.swing.JPanel();
         lblFirstName = new javax.swing.JLabel();
         txtFirstName = new javax.swing.JTextField();
@@ -71,6 +75,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblTitle = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCustomer = new javax.swing.JTable();
 
         setClosable(true);
         setFocusTraversalPolicyProvider(true);
@@ -255,22 +261,70 @@ public class CSInterface extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40))))
         );
 
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, customerList, tblCustomer);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${customerId}"));
+        columnBinding.setColumnName("Customer Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${firstName}"));
+        columnBinding.setColumnName("First Name");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${middleInitial}"));
+        columnBinding.setColumnName("Middle Initial");
+        columnBinding.setColumnClass(Character.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lastName}"));
+        columnBinding.setColumnName("Last Name");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${email}"));
+        columnBinding.setColumnName("Email");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${pass}"));
+        columnBinding.setColumnName("Pass");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${phone}"));
+        columnBinding.setColumnName("Phone");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${addressLine1}"));
+        columnBinding.setColumnName("Address Line1");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${addressLine2}"));
+        columnBinding.setColumnName("Address Line2");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${city}"));
+        columnBinding.setColumnName("City");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${state}"));
+        columnBinding.setColumnName("State");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${zip}"));
+        columnBinding.setColumnName("Zip");
+        columnBinding.setColumnClass(String.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+
+        jScrollPane1.setViewportView(tblCustomer);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1196, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(1196, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(507, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -285,11 +339,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Unable to Add New Customer", "Result", JOptionPane.OK_OPTION);
         } else {
             
-            Customer tempCust = new Customer(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(), 
+            CustomerModel tempCust = new CustomerModel(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(), 
                                             txtFirstName.getText(), txtMInitial.getText(), txtLastName.getText(), txtAddress1.getText(),
                                             txtAddress2.getText(), txtCity.getText(), selectedState, txtZip.getText());
             
-            Customer.addCustomer(tempCust);
+            CustomerModel.addCustomer(tempCust);
         }
         
         txtFirstName.setText("");
@@ -319,48 +373,19 @@ public class CSInterface extends javax.swing.JInternalFrame {
         txtPhone.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
-    public static void addTable(Vector dbData, Vector columns) {
-        JTable table = new JTable(dbData,columns);
-        table.setVisible(true);
-        
-
-        JScrollPane spTable = new JScrollPane(table);
-        JPanel panel = new JPanel();
-        panel.add(spTable);
-    }
     
-    public void rowChanged(RowSetEvent event) {
 
-        CachedRowSet currentRowSet = this.myCoffeesTableModel.customerRowSet;
-
-        try {
-            currentRowSet.moveToCurrentRow();
-            myCoffeesTableModel = new CoffeesTableModel(myCoffeesTableModel.getCoffeesRowSet());
-            table.setModel(myCoffeesTableModel);
-
-        } catch (SQLException ex) {
-
-            JDBCTutorialUtilities.printSQLException(ex);
-
-            // Display the error in a dialog box.
-
-            JOptionPane.showMessageDialog(
-                CoffeesFrame.this,
-                new String[] {
-                    // Display a 2-line message
-                    ex.getClass().getName() + ": ",
-                    ex.getMessage()
-                }
-            );
-        }
-    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cmbState;
+    private java.util.List<internalFrames.Customer> customerList;
+    private javax.persistence.Query customerQuery;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddress1;
     private javax.swing.JLabel lblAddress2;
     private javax.swing.JLabel lblCity;
@@ -373,6 +398,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblState;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblZip;
+    private javax.swing.JTable tblCustomer;
     private javax.swing.JTextField txtAddress1;
     private javax.swing.JTextField txtAddress2;
     private javax.swing.JTextField txtCity;
@@ -383,5 +409,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtZip;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

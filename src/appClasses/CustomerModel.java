@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author mattm
  */
-public class Customer {
+public class CustomerModel {
     
     private int customerID;
     private String email,
@@ -30,7 +30,7 @@ public class Customer {
                    state,
                    zip;
     
-    public Customer(String email, String pass, String phone, String firstName, String middleInitial,
+    public CustomerModel(String email, String pass, String phone, String firstName, String middleInitial,
                     String lastName, String addressLine1, String addressLine2, String city, String state, String zip) {       
         this.email = email;
         this.pass = pass;
@@ -73,7 +73,7 @@ public class Customer {
     public void setzip(String zip) { this.zip = zip; }
     
     
-    public static void addCustomer(Customer cust) {
+    public static void addCustomer(CustomerModel cust) {
         
         Connection conn = null;
            
