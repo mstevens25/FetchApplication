@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Matt
@@ -34,6 +36,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
         this.setSize(xsize, ysize);
     
         this.setVisible(true);
+        
+        TableModel.gatherData(custTable);
     }
 
     /**
@@ -75,8 +79,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblTitle = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scpTable = new javax.swing.JScrollPane();
         tblCustomer = new javax.swing.JTable();
+        btnRefresh = new javax.swing.JButton();
+        scpnlTable = new javax.swing.JScrollPane();
+        custTable = new javax.swing.JTable();
 
         setClosable(true);
         setFocusTraversalPolicyProvider(true);
@@ -85,48 +92,59 @@ public class CSInterface extends javax.swing.JInternalFrame {
         jPanel1.setFocusTraversalPolicyProvider(true);
         jPanel1.setNextFocusableComponent(txtFirstName);
 
+        lblFirstName.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblFirstName.setText("First Name:");
 
         txtFirstName.setFocusCycleRoot(true);
         txtFirstName.setNextFocusableComponent(txtMInitial);
 
+        lblMInital.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblMInital.setText("Middle Initial:");
 
         txtMInitial.setNextFocusableComponent(txtLastName);
 
+        lblLastName.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblLastName.setText("Last Name:");
 
         txtLastName.setNextFocusableComponent(txtPhone);
 
+        lblPhone.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblPhone.setText("Phone:");
 
         txtPhone.setNextFocusableComponent(txtEmail);
 
+        lblEmail.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblEmail.setText("Email:");
 
         txtEmail.setNextFocusableComponent(txtPassword);
 
+        lblPassword.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblPassword.setText("Password:");
 
         txtPassword.setNextFocusableComponent(txtAddress1);
 
+        lblAddress1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblAddress1.setText("Address 1:");
 
         txtAddress1.setNextFocusableComponent(txtAddress2);
 
+        lblAddress2.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblAddress2.setText("Address 2:");
 
         txtAddress2.setNextFocusableComponent(txtCity);
 
+        lblCity.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblCity.setText("City:");
 
         txtCity.setNextFocusableComponent(cmbState);
 
+        lblState.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblState.setText("State:");
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
         cmbState.setNextFocusableComponent(txtZip);
 
+        lblZip.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblZip.setText("ZIP:");
 
         txtZip.setNextFocusableComponent(btnSubmit);
@@ -201,17 +219,17 @@ public class CSInterface extends javax.swing.JInternalFrame {
                                 .addComponent(txtZip, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cmbState, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(35, 35, 35))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(237, 237, 237)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(246, 246, 246))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(33, 33, 33)
                 .addComponent(lblTitle)
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFirstName)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +279,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40))))
         );
 
-        jScrollPane1.addContainerListener(new java.awt.event.ContainerAdapter() {
+        scpTable.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentRemoved(java.awt.event.ContainerEvent evt) {
                 csInterfaceClosed(evt);
             }
@@ -306,7 +324,28 @@ public class CSInterface extends javax.swing.JInternalFrame {
         columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        jScrollPane1.setViewportView(tblCustomer);
+        scpTable.setViewportView(tblCustomer);
+
+        btnRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        btnRefresh.setText("Refresh Table");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
+        custTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scpnlTable.setViewportView(custTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -317,16 +356,25 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(1196, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)))
+                        .addGap(31, 31, 31)
+                        .addComponent(btnRefresh)
+                        .addContainerGap(1561, Short.MAX_VALUE))
+                    .addComponent(scpTable)
+                    .addComponent(scpnlTable, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(scpTable, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scpnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -383,19 +431,22 @@ public class CSInterface extends javax.swing.JInternalFrame {
         this.getDesktopPane().add(initLogin);
     }//GEN-LAST:event_csInterfaceClosed
 
-    
-
-    
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        TableModel.gatherData(custTable);
+        custTable.repaint();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+ 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> cmbState;
+    private javax.swing.JTable custTable;
     private java.util.List<internalFrames.Customer> customerList;
     private javax.persistence.Query customerQuery;
     private javax.persistence.EntityManager entityManager;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAddress1;
     private javax.swing.JLabel lblAddress2;
     private javax.swing.JLabel lblCity;
@@ -408,6 +459,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblState;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblZip;
+    private javax.swing.JScrollPane scpTable;
+    private javax.swing.JScrollPane scpnlTable;
     private javax.swing.JTable tblCustomer;
     private javax.swing.JTextField txtAddress1;
     private javax.swing.JTextField txtAddress2;
