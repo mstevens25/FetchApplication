@@ -362,7 +362,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblRefreshActionPerformed
-        //custTable = CustomerTableModel.getData();        // TODO add your handling code here:
+        CustomerTableModel.getData(custTable);        // TODO add your handling code here:
     }//GEN-LAST:event_btnTblRefreshActionPerformed
 
     private void windClose(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_windClose
