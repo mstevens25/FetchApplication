@@ -147,7 +147,8 @@ public class Login extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
             txtUsername.setText("Email");
             pwtPassword.setText("");
-        }        
+        } 
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked

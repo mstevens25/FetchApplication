@@ -15,13 +15,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Matt
  */
 public class CSInterface extends javax.swing.JInternalFrame {
+    
 
     /**
      * Creates new form CSInterface
@@ -37,7 +37,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
     
         this.setVisible(true);
         
-        TableModel.gatherData(custTable);
+        CustomerTableModel db = new CustomerTableModel();
+        db.getData(custTable);
     }
 
     /**
@@ -48,11 +49,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("fetchdb?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
-        customerQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Customer c");
-        customerList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerQuery.getResultList();
         jPanel1 = new javax.swing.JPanel();
         lblFirstName = new javax.swing.JLabel();
         txtFirstName = new javax.swing.JTextField();
@@ -79,11 +76,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblTitle = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        scpTable = new javax.swing.JScrollPane();
-        tblCustomer = new javax.swing.JTable();
-        btnRefresh = new javax.swing.JButton();
-        scpnlTable = new javax.swing.JScrollPane();
+        scpnTable = new javax.swing.JScrollPane();
         custTable = new javax.swing.JTable();
+        btnTblRefresh = new javax.swing.JButton();
 
         setClosable(true);
         setFocusTraversalPolicyProvider(true);
@@ -92,59 +87,48 @@ public class CSInterface extends javax.swing.JInternalFrame {
         jPanel1.setFocusTraversalPolicyProvider(true);
         jPanel1.setNextFocusableComponent(txtFirstName);
 
-        lblFirstName.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblFirstName.setText("First Name:");
 
         txtFirstName.setFocusCycleRoot(true);
         txtFirstName.setNextFocusableComponent(txtMInitial);
 
-        lblMInital.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblMInital.setText("Middle Initial:");
 
         txtMInitial.setNextFocusableComponent(txtLastName);
 
-        lblLastName.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblLastName.setText("Last Name:");
 
         txtLastName.setNextFocusableComponent(txtPhone);
 
-        lblPhone.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblPhone.setText("Phone:");
 
         txtPhone.setNextFocusableComponent(txtEmail);
 
-        lblEmail.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblEmail.setText("Email:");
 
         txtEmail.setNextFocusableComponent(txtPassword);
 
-        lblPassword.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblPassword.setText("Password:");
 
         txtPassword.setNextFocusableComponent(txtAddress1);
 
-        lblAddress1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblAddress1.setText("Address 1:");
 
         txtAddress1.setNextFocusableComponent(txtAddress2);
 
-        lblAddress2.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblAddress2.setText("Address 2:");
 
         txtAddress2.setNextFocusableComponent(txtCity);
 
-        lblCity.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblCity.setText("City:");
 
         txtCity.setNextFocusableComponent(cmbState);
 
-        lblState.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblState.setText("State:");
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
         cmbState.setNextFocusableComponent(txtZip);
 
-        lblZip.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblZip.setText("ZIP:");
 
         txtZip.setNextFocusableComponent(btnSubmit);
@@ -219,17 +203,17 @@ public class CSInterface extends javax.swing.JInternalFrame {
                                 .addComponent(txtZip, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cmbState, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(35, 35, 35))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(237, 237, 237)
                 .addComponent(lblTitle)
-                .addGap(246, 246, 246))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(31, 31, 31)
                 .addComponent(lblTitle)
-                .addGap(32, 32, 32)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFirstName)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,61 +263,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40))))
         );
 
-        scpTable.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentRemoved(java.awt.event.ContainerEvent evt) {
-                csInterfaceClosed(evt);
-            }
-        });
-
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, customerList, tblCustomer);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${customerId}"));
-        columnBinding.setColumnName("Customer Id");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${firstName}"));
-        columnBinding.setColumnName("First Name");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${middleInitial}"));
-        columnBinding.setColumnName("Middle Initial");
-        columnBinding.setColumnClass(Character.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lastName}"));
-        columnBinding.setColumnName("Last Name");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${email}"));
-        columnBinding.setColumnName("Email");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${pass}"));
-        columnBinding.setColumnName("Pass");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${phone}"));
-        columnBinding.setColumnName("Phone");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${addressLine1}"));
-        columnBinding.setColumnName("Address Line1");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${addressLine2}"));
-        columnBinding.setColumnName("Address Line2");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${city}"));
-        columnBinding.setColumnName("City");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${state}"));
-        columnBinding.setColumnName("State");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${zip}"));
-        columnBinding.setColumnName("Zip");
-        columnBinding.setColumnClass(String.class);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
-        scpTable.setViewportView(tblCustomer);
-
-        btnRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
-        btnRefresh.setText("Refresh Table");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
-
         custTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -345,7 +274,19 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        scpnlTable.setViewportView(custTable);
+        scpnTable.setViewportView(custTable);
+
+        btnTblRefresh.setText("Refresh Table");
+        btnTblRefresh.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                windClose(evt);
+            }
+        });
+        btnTblRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTblRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -354,30 +295,24 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scpnTable)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnRefresh)
-                        .addContainerGap(1561, Short.MAX_VALUE))
-                    .addComponent(scpTable)
-                    .addComponent(scpnlTable, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(1054, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(scpTable, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scpnlTable, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -426,26 +361,24 @@ public class CSInterface extends javax.swing.JInternalFrame {
         txtPhone.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private void csInterfaceClosed(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_csInterfaceClosed
-        Login initLogin = new Login();
-        this.getDesktopPane().add(initLogin);
-    }//GEN-LAST:event_csInterfaceClosed
+    private void btnTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblRefreshActionPerformed
+        //custTable = CustomerTableModel.getData();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTblRefreshActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        TableModel.gatherData(custTable);
-        custTable.repaint();
-    }//GEN-LAST:event_btnRefreshActionPerformed
- 
+    private void windClose(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_windClose
+        
+    }//GEN-LAST:event_windClose
+
+    
+
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnTblRefresh;
     private javax.swing.JComboBox<String> cmbState;
     private javax.swing.JTable custTable;
-    private java.util.List<internalFrames.Customer> customerList;
-    private javax.persistence.Query customerQuery;
-    private javax.persistence.EntityManager entityManager;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAddress1;
     private javax.swing.JLabel lblAddress2;
@@ -459,9 +392,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblState;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblZip;
-    private javax.swing.JScrollPane scpTable;
-    private javax.swing.JScrollPane scpnlTable;
-    private javax.swing.JTable tblCustomer;
+    private javax.swing.JScrollPane scpnTable;
     private javax.swing.JTextField txtAddress1;
     private javax.swing.JTextField txtAddress2;
     private javax.swing.JTextField txtCity;
@@ -472,6 +403,5 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtZip;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
