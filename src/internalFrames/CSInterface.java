@@ -50,19 +50,19 @@ public class CSInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        scpnTable = new javax.swing.JScrollPane();
+        scpnCustTable = new javax.swing.JScrollPane();
         custTable = new javax.swing.JTable();
         lblCustTblTitle = new javax.swing.JLabel();
-        scpnTable1 = new javax.swing.JScrollPane();
-        custTable1 = new javax.swing.JTable();
-        lblCustTblTitle1 = new javax.swing.JLabel();
-        scpnTable2 = new javax.swing.JScrollPane();
-        custTable2 = new javax.swing.JTable();
-        lblCustTblTitle2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        btnTblRefresh = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        scpnPetTable = new javax.swing.JScrollPane();
+        petTable = new javax.swing.JTable();
+        lblGrmTblTitle = new javax.swing.JLabel();
+        scpnGrmTable = new javax.swing.JScrollPane();
+        grmTable = new javax.swing.JTable();
+        lblPetTblTitle = new javax.swing.JLabel();
+        pnlCustOptions = new javax.swing.JPanel();
+        btnAddCust = new javax.swing.JButton();
+        btnCustTblRefresh = new javax.swing.JButton();
+        pnlGrmOptions = new javax.swing.JPanel();
 
         setClosable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
@@ -96,12 +96,12 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        scpnTable.setViewportView(custTable);
+        scpnCustTable.setViewportView(custTable);
 
         lblCustTblTitle.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
         lblCustTblTitle.setText("CUSTOMERS");
 
-        custTable1.setModel(new javax.swing.table.DefaultTableModel(
+        petTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,12 +112,12 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        scpnTable1.setViewportView(custTable1);
+        scpnPetTable.setViewportView(petTable);
 
-        lblCustTblTitle1.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
-        lblCustTblTitle1.setText("GROOMERS");
+        lblGrmTblTitle.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
+        lblGrmTblTitle.setText("GROOMERS");
 
-        custTable2.setModel(new javax.swing.table.DefaultTableModel(
+        grmTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -128,59 +128,59 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        scpnTable2.setViewportView(custTable2);
+        scpnGrmTable.setViewportView(grmTable);
 
-        lblCustTblTitle2.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
-        lblCustTblTitle2.setText("PETS");
+        lblPetTblTitle.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
+        lblPetTblTitle.setText("PETS");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
+        pnlCustOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 13)); // NOI18N
-        jButton1.setText("Add Customer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddCust.setFont(new java.awt.Font("Book Antiqua", 0, 13)); // NOI18N
+        btnAddCust.setText("Add Customer");
+        btnAddCust.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddCustActionPerformed(evt);
             }
         });
 
-        btnTblRefresh.setText("Refresh Table");
-        btnTblRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnCustTblRefresh.setText("Refresh Table");
+        btnCustTblRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTblRefreshActionPerformed(evt);
+                btnCustTblRefreshActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCustOptionsLayout = new javax.swing.GroupLayout(pnlCustOptions);
+        pnlCustOptions.setLayout(pnlCustOptionsLayout);
+        pnlCustOptionsLayout.setHorizontalGroup(
+            pnlCustOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustOptionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlCustOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddCust, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCustTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(405, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlCustOptionsLayout.setVerticalGroup(
+            pnlCustOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustOptionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddCust, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCustTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Groomer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
+        pnlGrmOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Groomer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlGrmOptionsLayout = new javax.swing.GroupLayout(pnlGrmOptions);
+        pnlGrmOptions.setLayout(pnlGrmOptionsLayout);
+        pnlGrmOptionsLayout.setHorizontalGroup(
+            pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 523, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlGrmOptionsLayout.setVerticalGroup(
+            pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 269, Short.MAX_VALUE)
         );
 
@@ -191,19 +191,19 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scpnTable, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scpnTable1)
-                    .addComponent(scpnTable2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1873, Short.MAX_VALUE)
+                    .addComponent(scpnCustTable, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scpnPetTable)
+                    .addComponent(scpnGrmTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1873, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCustTblTitle2)
-                            .addComponent(lblCustTblTitle1)
+                            .addComponent(lblPetTblTitle)
+                            .addComponent(lblGrmTblTitle)
                             .addComponent(lblCustTblTitle)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pnlCustOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(pnlGrmOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -212,59 +212,59 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlGrmOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlCustOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(lblCustTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpnTable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scpnCustTable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblCustTblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblGrmTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpnTable2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scpnGrmTable, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblCustTblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPetTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(scpnTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scpnPetTable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblRefreshActionPerformed
+    private void btnCustTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustTblRefreshActionPerformed
         CustomerTableModel.getData(custTable);        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTblRefreshActionPerformed
+    }//GEN-LAST:event_btnCustTblRefreshActionPerformed
 
     private void winClose(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_winClose
         Login initLogin = new Login();
         this.getDesktopPane().add(initLogin);        
     }//GEN-LAST:event_winClose
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustActionPerformed
         addCustomer addCust = new addCustomer();
         this.getParent().add(addCust);
         addCust.setVisible(true);
         addCust.moveToFront();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddCustActionPerformed
 
     
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnTblRefresh;
+    private javax.swing.JButton btnAddCust;
+    private javax.swing.JButton btnCustTblRefresh;
     private javax.swing.JTable custTable;
-    private javax.swing.JTable custTable1;
-    private javax.swing.JTable custTable2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTable grmTable;
     private javax.swing.JLabel lblCustTblTitle;
-    private javax.swing.JLabel lblCustTblTitle1;
-    private javax.swing.JLabel lblCustTblTitle2;
-    private javax.swing.JScrollPane scpnTable;
-    private javax.swing.JScrollPane scpnTable1;
-    private javax.swing.JScrollPane scpnTable2;
+    private javax.swing.JLabel lblGrmTblTitle;
+    private javax.swing.JLabel lblPetTblTitle;
+    private javax.swing.JTable petTable;
+    private javax.swing.JPanel pnlCustOptions;
+    private javax.swing.JPanel pnlGrmOptions;
+    private javax.swing.JScrollPane scpnCustTable;
+    private javax.swing.JScrollPane scpnGrmTable;
+    private javax.swing.JScrollPane scpnPetTable;
     // End of variables declaration//GEN-END:variables
 }
