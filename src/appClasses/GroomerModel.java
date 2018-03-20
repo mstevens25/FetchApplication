@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author mattm
  */
-public class GroomerTableModel {
+public class GroomerModel {
     private int groomerID;
     private String email,
                    pass,
@@ -29,7 +29,7 @@ public class GroomerTableModel {
                    state,
                    zip;
     
-    public GroomerTableModel(String email, String pass, String phone, String firstName, String middleInitial,
+    public GroomerModel(String email, String pass, String phone, String firstName, String middleInitial,
                     String lastName, String addressLine1, String addressLine2, String city, String state, String zip) { 
         
         this.email = email;
