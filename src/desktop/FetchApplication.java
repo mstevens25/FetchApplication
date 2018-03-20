@@ -203,8 +203,4 @@ public class FetchApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
-    public void addCSFrame(){
-        CSInterface csFrame = new CSInterface();
-        this.add(csFrame);
-    }
 }
