@@ -98,9 +98,9 @@ public class GroomerTableModel {
             int i = stmt.executeUpdate();
             
             if(i>0) {
-                JOptionPane.showMessageDialog(null, "New Customer Added Successfully.", "Result", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null, "New Groomer Added Successfully.", "Result", JOptionPane.OK_OPTION);
             } else {
-                JOptionPane.showMessageDialog(null, "Unable to Add New Customer", "Result", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null, "Unable to Add New Groomer", "Result", JOptionPane.OK_OPTION);
             }
             
         } catch (SQLException e) {
