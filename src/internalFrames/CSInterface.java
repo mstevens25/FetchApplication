@@ -37,8 +37,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
     
         this.setVisible(true);
         
-        CustomerTableModel db = new CustomerTableModel();
-        db.getData(custTable);
+        CustomerTableModel custDB = new CustomerTableModel();
+        custDB.getData(custTable);
+        
+        GroomerTableModel grmDB = new GroomerTableModel();
+        grmDB.getData(grmTable);
     }
 
     /**

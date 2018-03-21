@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import javax.swing.*;
 import internalFrames.*;
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 /**
  *
  * @author Matt
@@ -21,7 +23,8 @@ public class FetchApplication extends javax.swing.JFrame {
     public FetchApplication() {
         initComponents();
 
-        
+        int scalx = 1050,
+            scaly = 1680;
         /*Toolkit tk = Toolkit.getDefaultToolkit();
             int xsize = (int) tk.getScreenSize().getWidth();
             int ysize = (int) tk.getScreenSize().getHeight();
@@ -32,6 +35,7 @@ public class FetchApplication extends javax.swing.JFrame {
         this.add(desktop, BorderLayout.CENTER);      
         this.setExtendedState(MAXIMIZED_BOTH);     
         desktop.setBounds(this.getBounds());
+
         Login initLogin = new Login();
         desktop.add(initLogin);
     }
@@ -172,6 +176,7 @@ public class FetchApplication extends javax.swing.JFrame {
             // select Look and Feel
             com.jtattoo.plaf.graphite.GraphiteLookAndFeel.setTheme("Green", "", "Fetch");
             UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+            
             // start application
         }
         catch (Exception ex) {
