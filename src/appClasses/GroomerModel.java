@@ -73,7 +73,7 @@ public class GroomerModel {
     public void setzip(String zip) { this.zip = zip; }
     
     
-    public static void addGroomer(GroomerModel cust) {
+    public static void addGroomer(GroomerModel grmr) {
         
         Connection conn = null;
            
@@ -83,17 +83,17 @@ public class GroomerModel {
                 +    " (email, pass, phone, firstName, middleInitial, lastName, addressLine1, addressLine2, city, state, zip)"
                 +    " values (?,?,?,?,?,?,?,?,?,?,?)");
             
-            stmt.setString(1, cust.getemail());
-            stmt.setString(2, cust.getpass());
-            stmt.setString(3, cust.getphone());
-            stmt.setString(4, cust.getfirstName());
-            stmt.setString(5, cust.getmiddleInitial());
-            stmt.setString(6, cust.getlastName());
-            stmt.setString(7, cust.getaddressLine1());
-            stmt.setString(8, cust.getaddressLine2());
-            stmt.setString(9, cust.getcity());
-            stmt.setString(10, cust.getstate());
-            stmt.setString(11, cust.getzip());
+            stmt.setString(1, grmr.getemail());
+            stmt.setString(2, grmr.getpass());
+            stmt.setString(3, grmr.getphone());
+            stmt.setString(4, grmr.getfirstName());
+            stmt.setString(5, grmr.getmiddleInitial());
+            stmt.setString(6, grmr.getlastName());
+            stmt.setString(7, grmr.getaddressLine1());
+            stmt.setString(8, grmr.getaddressLine2());
+            stmt.setString(9, grmr.getcity());
+            stmt.setString(10, grmr.getstate());
+            stmt.setString(11, grmr.getzip());
             
             int i = stmt.executeUpdate();
             

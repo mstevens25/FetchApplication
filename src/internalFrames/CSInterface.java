@@ -285,7 +285,10 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGrmTblRefreshActionPerformed
 
     private void btnAddGrmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrmActionPerformed
-        // TODO add your handling code here:
+        addGroomer addGrm = new addGroomer();
+        this.getParent().add(addGrm);
+        addGrm.setVisible(true);
+        addGrm.moveToFront();
     }//GEN-LAST:event_btnAddGrmActionPerformed
 
     

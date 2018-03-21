@@ -77,7 +77,7 @@ public class addGroomer extends javax.swing.JInternalFrame {
         btnClose = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Add Customer");
+        setTitle("Add Groomer");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setFocusTraversalPolicyProvider(true);
@@ -109,7 +109,7 @@ public class addGroomer extends javax.swing.JInternalFrame {
         lblZip.setText("ZIP:");
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
-        lblTitle.setText("Add Customer");
+        lblTitle.setText("Add Groomer");
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
