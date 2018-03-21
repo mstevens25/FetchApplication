@@ -67,6 +67,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         btnCustTblRefresh = new javax.swing.JButton();
         pnlGrmOptions = new javax.swing.JPanel();
         btnGrmTblRefresh = new javax.swing.JButton();
+        btnAddGrm = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
@@ -186,19 +187,31 @@ public class CSInterface extends javax.swing.JInternalFrame {
             }
         });
 
+        btnAddGrm.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnAddGrm.setText("Add Groomer");
+        btnAddGrm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddGrmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlGrmOptionsLayout = new javax.swing.GroupLayout(pnlGrmOptions);
         pnlGrmOptions.setLayout(pnlGrmOptionsLayout);
         pnlGrmOptionsLayout.setHorizontalGroup(
             pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGrmOptionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnGrmTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGrmTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddGrm, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(381, Short.MAX_VALUE))
         );
         pnlGrmOptionsLayout.setVerticalGroup(
             pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGrmOptionsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnAddGrm, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGrmTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -271,12 +284,17 @@ public class CSInterface extends javax.swing.JInternalFrame {
         GroomerTableModel.getData(grmTable); 
     }//GEN-LAST:event_btnGrmTblRefreshActionPerformed
 
+    private void btnAddGrmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddGrmActionPerformed
+
     
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCust;
+    private javax.swing.JButton btnAddGrm;
     private javax.swing.JButton btnCustTblRefresh;
     private javax.swing.JButton btnGrmTblRefresh;
     private javax.swing.JTable custTable;

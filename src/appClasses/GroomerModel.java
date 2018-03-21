@@ -73,7 +73,7 @@ public class GroomerModel {
     public void setzip(String zip) { this.zip = zip; }
     
     
-    public static void addCustomer(CustomerModel cust) {
+    public static void addGroomer(GroomerModel cust) {
         
         Connection conn = null;
            
