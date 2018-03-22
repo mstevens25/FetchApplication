@@ -73,6 +73,7 @@ public class addPet extends javax.swing.JInternalFrame {
         lblPetName.setText("Pet Name:");
 
         txtPetName.setFocusCycleRoot(true);
+        txtPetName.setNextFocusableComponent(cmbPetType);
 
         lblPetType.setText("Pet Type:");
 
@@ -80,14 +81,21 @@ public class addPet extends javax.swing.JInternalFrame {
 
         lblBreed.setText("Breed:");
 
+        txtBreed.setNextFocusableComponent(txtAge);
+
         lblAge.setText("Age:");
 
+        txtAge.setNextFocusableComponent(txtOwnerID);
+
         lblOwnerID.setText("Owner ID:");
+
+        txtOwnerID.setNextFocusableComponent(btnSubmit);
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         lblTitle.setText("Add Pet");
 
         btnSubmit.setText("Submit");
+        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -95,6 +103,7 @@ public class addPet extends javax.swing.JInternalFrame {
         });
 
         btnReset.setText("Reset");
+        btnReset.setNextFocusableComponent(btnClose);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -103,6 +112,7 @@ public class addPet extends javax.swing.JInternalFrame {
 
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setText("Close");
+        btnClose.setNextFocusableComponent(txtPetName);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -110,12 +120,15 @@ public class addPet extends javax.swing.JInternalFrame {
         });
 
         cmbPetType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dog", "Cat" }));
+        cmbPetType.setNextFocusableComponent(rdbMale);
 
         bgrpSex.add(rdbMale);
         rdbMale.setText("Male");
+        rdbMale.setNextFocusableComponent(rdbFemale);
 
         bgrpSex.add(rdbFemale);
         rdbFemale.setText("Female");
+        rdbFemale.setNextFocusableComponent(txtBreed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,10 +209,11 @@ public class addPet extends javax.swing.JInternalFrame {
                             .addComponent(btnReset)
                             .addComponent(btnSubmit))
                         .addGap(15, 15, 15)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAge)
-                    .addComponent(btnClose))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblAge)
+                        .addComponent(btnClose)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
