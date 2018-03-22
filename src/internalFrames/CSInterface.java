@@ -42,6 +42,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
         
         GroomerTableModel grmDB = new GroomerTableModel();
         grmDB.getData(grmTable);
+        
+        PetTableModel petDB = new PetTableModel();
+        petDB.getData(petTable);
     }
 
     /**
@@ -69,7 +72,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
         btnGrmTblRefresh = new javax.swing.JButton();
         btnAddGrm = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        btnGrmTblRefresh1 = new javax.swing.JButton();
+        btnPetTblRefresh = new javax.swing.JButton();
+        btnAddGrm1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
@@ -220,11 +224,19 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
-        btnGrmTblRefresh1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnGrmTblRefresh1.setText("Refresh Table");
-        btnGrmTblRefresh1.addActionListener(new java.awt.event.ActionListener() {
+        btnPetTblRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnPetTblRefresh.setText("Refresh Table");
+        btnPetTblRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrmTblRefresh1ActionPerformed(evt);
+                btnPetTblRefreshActionPerformed(evt);
+            }
+        });
+
+        btnAddGrm1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnAddGrm1.setText("Add Pet");
+        btnAddGrm1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddGrm1ActionPerformed(evt);
             }
         });
 
@@ -234,14 +246,18 @@ public class CSInterface extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnGrmTblRefresh1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPetTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddGrm1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(352, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGrmTblRefresh1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(btnAddGrm1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPetTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -323,9 +339,16 @@ public class CSInterface extends javax.swing.JInternalFrame {
         addGrm.moveToFront();
     }//GEN-LAST:event_btnAddGrmActionPerformed
 
-    private void btnGrmTblRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrmTblRefresh1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGrmTblRefresh1ActionPerformed
+    private void btnPetTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetTblRefreshActionPerformed
+        PetTableModel.getData(petTable);
+    }//GEN-LAST:event_btnPetTblRefreshActionPerformed
+
+    private void btnAddGrm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrm1ActionPerformed
+        addPet addPet = new addPet();
+        this.getParent().add(addPet);
+        addPet.setVisible(true);
+        addPet.moveToFront();
+    }//GEN-LAST:event_btnAddGrm1ActionPerformed
 
     
 
@@ -334,9 +357,10 @@ public class CSInterface extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCust;
     private javax.swing.JButton btnAddGrm;
+    private javax.swing.JButton btnAddGrm1;
     private javax.swing.JButton btnCustTblRefresh;
     private javax.swing.JButton btnGrmTblRefresh;
-    private javax.swing.JButton btnGrmTblRefresh1;
+    private javax.swing.JButton btnPetTblRefresh;
     private javax.swing.JTable custTable;
     private javax.swing.JTable grmTable;
     private javax.swing.JPanel jPanel1;

@@ -24,6 +24,15 @@ public class addPet extends javax.swing.JInternalFrame {
      */
     public addPet() {
         initComponents();
+        
+         Toolkit tk = Toolkit.getDefaultToolkit();
+            int xsize = (int) tk.getScreenSize().getWidth();
+            int ysize = (int) tk.getScreenSize().getHeight();
+            
+        Dimension frameSize = this.getSize();
+            
+        this.setLocation((xsize - frameSize.width)/2, (ysize - frameSize.height)/2);
+        this.setVisible(true);
     }
 
     /**
