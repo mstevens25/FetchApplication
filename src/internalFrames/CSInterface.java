@@ -69,6 +69,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         btnGrmTblRefresh = new javax.swing.JButton();
         btnAddGrm = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        btnGrmTblRefresh1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
@@ -212,22 +213,36 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGrmOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAddGrm, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addComponent(btnGrmTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
+        btnGrmTblRefresh1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnGrmTblRefresh1.setText("Refresh Table");
+        btnGrmTblRefresh1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrmTblRefresh1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGrmTblRefresh1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(352, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGrmTblRefresh1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -308,6 +323,10 @@ public class CSInterface extends javax.swing.JInternalFrame {
         addGrm.moveToFront();
     }//GEN-LAST:event_btnAddGrmActionPerformed
 
+    private void btnGrmTblRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrmTblRefresh1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGrmTblRefresh1ActionPerformed
+
     
 
     
@@ -317,6 +336,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAddGrm;
     private javax.swing.JButton btnCustTblRefresh;
     private javax.swing.JButton btnGrmTblRefresh;
+    private javax.swing.JButton btnGrmTblRefresh1;
     private javax.swing.JTable custTable;
     private javax.swing.JTable grmTable;
     private javax.swing.JPanel jPanel1;
