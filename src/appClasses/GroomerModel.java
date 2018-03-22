@@ -79,7 +79,7 @@ public class GroomerModel {
            
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fetchdb", "root", "mysqlpw"); 
-            PreparedStatement stmt = conn.prepareStatement("insert into customer"
+            PreparedStatement stmt = conn.prepareStatement("insert into groomer"
                 +    " (email, pass, phone, firstName, middleInitial, lastName, addressLine1, addressLine2, city, state, zip)"
                 +    " values (?,?,?,?,?,?,?,?,?,?,?)");
             

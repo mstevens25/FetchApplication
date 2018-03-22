@@ -79,54 +79,81 @@ public class addGroomer extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Add Groomer");
 
+        setClosable(true);
+        setTitle("Add Groomer");
+        setNextFocusableComponent(txtFirstName);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setFocusTraversalPolicyProvider(true);
 
         lblFirstName.setText("First Name:");
 
         txtFirstName.setFocusCycleRoot(true);
+        txtFirstName.setNextFocusableComponent(txtMInitial);
 
         lblMInital.setText("Middle Initial:");
 
+        txtMInitial.setNextFocusableComponent(txtLastName);
+
         lblLastName.setText("Last Name:");
+
+        txtLastName.setNextFocusableComponent(txtPhone);
 
         lblPhone.setText("Phone:");
 
+        txtPhone.setNextFocusableComponent(txtEmail);
+
         lblEmail.setText("Email:");
+
+        txtEmail.setNextFocusableComponent(txtPassword);
 
         lblPassword.setText("Password:");
 
+        txtPassword.setNextFocusableComponent(txtAddress1);
+
         lblAddress1.setText("Address 1:");
+
+        txtAddress1.setNextFocusableComponent(txtAddress2);
 
         lblAddress2.setText("Address 2:");
 
+        txtAddress2.setNextFocusableComponent(txtCity);
+
         lblCity.setText("City:");
+
+        txtCity.setNextFocusableComponent(cmbState);
 
         lblState.setText("State:");
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
+        cmbState.setNextFocusableComponent(txtZip);
 
         lblZip.setText("ZIP:");
+
+        txtZip.setNextFocusableComponent(btnSubmit);
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         lblTitle.setText("Add Groomer");
 
         btnSubmit.setText("Submit");
+        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
-
+        
         btnReset.setText("Reset");
+        btnReset.setNextFocusableComponent(btnClose);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
-
+        
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setText("Close");
+        btnClose.setNextFocusableComponent(txtFirstName);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
