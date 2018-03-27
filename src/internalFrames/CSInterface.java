@@ -37,14 +37,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
     
         this.setVisible(true);
         
-        CustomerTableModel custDB = new CustomerTableModel();
-        custDB.getData(custTable);
-        
-        GroomerTableModel grmDB = new GroomerTableModel();
-        grmDB.getData(grmTable);
-        
-        PetTableModel petDB = new PetTableModel();
-        petDB.getData(petTable);
     }
 
     /**
@@ -346,7 +338,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCustTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustTblRefreshActionPerformed
-        CustomerTableModel.getData(custTable);        // TODO add your handling code here:
+             // TODO add your handling code here:
     }//GEN-LAST:event_btnCustTblRefreshActionPerformed
 
     private void winClose(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_winClose
@@ -355,38 +347,38 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_winClose
 
     private void btnAddCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustActionPerformed
-        addCustomer addCust = new addCustomer();
-        this.getParent().add(addCust);
-        addCust.setVisible(true);
-        addCust.moveToFront();
+        //addCustomer addCust = new addCustomer();
+        //this.getParent().add(addCust);
+        //addCust.setVisible(true);
+        //addCust.moveToFront();
     }//GEN-LAST:event_btnAddCustActionPerformed
 
     private void btnGrmTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrmTblRefreshActionPerformed
-        GroomerTableModel.getData(grmTable); 
+        //GroomerTableModel.getData(grmTable); 
     }//GEN-LAST:event_btnGrmTblRefreshActionPerformed
 
     private void btnAddGrmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrmActionPerformed
-        addGroomer addGrm = new addGroomer();
-        this.getParent().add(addGrm);
-        addGrm.setVisible(true);
-        addGrm.moveToFront();
+        //addGroomer addGrm = new addGroomer();
+        //this.getParent().add(addGrm);
+        //addGrm.setVisible(true);
+        //addGrm.moveToFront();
     }//GEN-LAST:event_btnAddGrmActionPerformed
 
     private void btnPetTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetTblRefreshActionPerformed
-        PetTableModel.getData(petTable);
+        //PetTableModel.getData(petTable);
     }//GEN-LAST:event_btnPetTblRefreshActionPerformed
 
     private void btnAddGrm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrm1ActionPerformed
-        addPet addPet = new addPet();
-        this.getParent().add(addPet);
-        addPet.setVisible(true);
-        addPet.moveToFront();
+        //addPet addPet = new addPet();
+        //this.getParent().add(addPet);
+        //addPet.setVisible(true);
+        //addPet.moveToFront();
     }//GEN-LAST:event_btnAddGrm1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PetTableModel.getData(petTable);
-        GroomerTableModel.getData(grmTable);
-        CustomerTableModel.getData(custTable);
+        //PetTableModel.getData(petTable);
+        //GroomerTableModel.getData(grmTable);
+        //CustomerTableModel.getData(custTable);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

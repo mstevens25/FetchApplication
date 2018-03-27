@@ -4,28 +4,24 @@
  * and open the template in the editor.
  */
 package internalFrames;
+import inputValidation.*;
 import appClasses.*;
+import desktop.*;
 
-import java.awt.*;
-import java.sql.SQLException;
-import java.util.Vector;
-import javax.sql.RowSetEvent;
-import javax.sql.rowset.CachedRowSet;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mattm
  */
-public class addCustomer extends javax.swing.JInternalFrame {
+public class AddCustomerFrame extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form addCustomer
+     * Creates new form AddCustomerFrame
      */
-    public addCustomer() {
+    public AddCustomerFrame() {
         initComponents();
         
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -36,7 +32,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
             
         this.setLocation((xsize - frameSize.width)/2, (ysize - frameSize.height)/2);
         this.setVisible(true);
-       
     }
 
     /**
@@ -76,64 +71,39 @@ public class addCustomer extends javax.swing.JInternalFrame {
         btnReset = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
 
-        setClosable(true);
-        setTitle("Add Customer");
-        setNextFocusableComponent(txtFirstName);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setFocusTraversalPolicyProvider(true);
 
         lblFirstName.setText("First Name:");
 
         txtFirstName.setFocusCycleRoot(true);
-        txtFirstName.setNextFocusableComponent(txtMInitial);
 
         lblMInital.setText("Middle Initial:");
 
-        txtMInitial.setNextFocusableComponent(txtLastName);
-
         lblLastName.setText("Last Name:");
-
-        txtLastName.setNextFocusableComponent(txtPhone);
 
         lblPhone.setText("Phone:");
 
-        txtPhone.setNextFocusableComponent(txtEmail);
-
         lblEmail.setText("Email:");
-
-        txtEmail.setNextFocusableComponent(txtPassword);
 
         lblPassword.setText("Password:");
 
-        txtPassword.setNextFocusableComponent(txtAddress1);
-
         lblAddress1.setText("Address 1:");
-
-        txtAddress1.setNextFocusableComponent(txtAddress2);
 
         lblAddress2.setText("Address 2:");
 
-        txtAddress2.setNextFocusableComponent(txtCity);
-
         lblCity.setText("City:");
-
-        txtCity.setNextFocusableComponent(cmbState);
 
         lblState.setText("State:");
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
-        cmbState.setNextFocusableComponent(txtZip);
 
         lblZip.setText("ZIP:");
-
-        txtZip.setNextFocusableComponent(btnSubmit);
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         lblTitle.setText("Add Customer");
 
         btnSubmit.setText("Submit");
-        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -141,7 +111,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
         });
 
         btnReset.setText("Reset");
-        btnReset.setNextFocusableComponent(btnClose);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -150,7 +119,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setText("Close");
-        btnClose.setNextFocusableComponent(txtFirstName);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -282,12 +250,12 @@ public class addCustomer extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(28, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();

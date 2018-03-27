@@ -4,28 +4,28 @@
  * and open the template in the editor.
  */
 package internalFrames;
-import appClasses.*;
 
-import java.awt.*;
-import java.sql.SQLException;
+import appClasses.PetModel;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Enumeration;
-import java.util.Vector;
-import javax.sql.RowSetEvent;
-import javax.sql.rowset.CachedRowSet;
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mattm
  */
-public class addPet extends javax.swing.JInternalFrame {
+public class AddPetFrame extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form addPet
+     * Creates new form AddPetFrame
      */
-    public addPet() {
+    public AddPetFrame() {
         initComponents();
         
-         Toolkit tk = Toolkit.getDefaultToolkit();
+        Toolkit tk = Toolkit.getDefaultToolkit();
             int xsize = (int) tk.getScreenSize().getWidth();
             int ysize = (int) tk.getScreenSize().getHeight();
             
@@ -73,7 +73,6 @@ public class addPet extends javax.swing.JInternalFrame {
         lblPetName.setText("Pet Name:");
 
         txtPetName.setFocusCycleRoot(true);
-        txtPetName.setNextFocusableComponent(cmbPetType);
 
         lblPetType.setText("Pet Type:");
 
@@ -81,21 +80,14 @@ public class addPet extends javax.swing.JInternalFrame {
 
         lblBreed.setText("Breed:");
 
-        txtBreed.setNextFocusableComponent(txtAge);
-
         lblAge.setText("Age:");
 
-        txtAge.setNextFocusableComponent(txtOwnerID);
-
         lblOwnerID.setText("Owner ID:");
-
-        txtOwnerID.setNextFocusableComponent(btnSubmit);
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         lblTitle.setText("Add Pet");
 
         btnSubmit.setText("Submit");
-        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -103,7 +95,6 @@ public class addPet extends javax.swing.JInternalFrame {
         });
 
         btnReset.setText("Reset");
-        btnReset.setNextFocusableComponent(btnClose);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -112,7 +103,6 @@ public class addPet extends javax.swing.JInternalFrame {
 
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setText("Close");
-        btnClose.setNextFocusableComponent(txtPetName);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -120,15 +110,12 @@ public class addPet extends javax.swing.JInternalFrame {
         });
 
         cmbPetType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dog", "Cat" }));
-        cmbPetType.setNextFocusableComponent(rdbMale);
 
         bgrpSex.add(rdbMale);
         rdbMale.setText("Male");
-        rdbMale.setNextFocusableComponent(rdbFemale);
 
         bgrpSex.add(rdbFemale);
         rdbFemale.setText("Female");
-        rdbFemale.setNextFocusableComponent(txtBreed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -237,20 +224,7 @@ public class addPet extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnCloseActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        txtPetName.setText("");
-        txtOwnerID.setText("");
-        cmbPetType.setSelectedIndex(0);
-        txtAge.setText("");
-        txtBreed.setText("");
-    }//GEN-LAST:event_btnResetActionPerformed
-
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-
         String selectedType =  (String) cmbPetType.getSelectedItem(),
                 selectedSex = this.getSelectedButtonText(bgrpSex);
         
@@ -268,7 +242,6 @@ public class addPet extends javax.swing.JInternalFrame {
 
 
             PetModel.addPet(tempPet);
-        }
 
         txtPetName.setText("");
         txtOwnerID.setText("");
@@ -276,7 +249,25 @@ public class addPet extends javax.swing.JInternalFrame {
         txtAge.setText("");
         txtBreed.setText("");
     }//GEN-LAST:event_btnSubmitActionPerformed
+    }
+    
+    
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtPetName.setText("");
+        txtOwnerID.setText("");
+        cmbPetType.setSelectedIndex(0);
+        txtAge.setText("");
+        txtBreed.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
 
+    
+    
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
+    
+    
+    
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
             
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
@@ -287,7 +278,6 @@ public class addPet extends javax.swing.JInternalFrame {
         }
         return null;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgrpSex;
