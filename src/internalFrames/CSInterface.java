@@ -8,9 +8,12 @@ import appClasses.*;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.Vector;
 import javax.sql.RowSetEvent;
 import javax.sql.rowset.CachedRowSet;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,6 +40,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
     
         this.setVisible(true);
         
+        CSTableModel searchTbl = new CSTableModel();
+        searchTbl.getData(tblSearchRs, "null");
+        tblSearchRs.setVisible(false);
     }
 
     /**
@@ -48,26 +54,18 @@ public class CSInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btngObjType = new javax.swing.ButtonGroup();
         scpnCustTable = new javax.swing.JScrollPane();
-        custTable = new javax.swing.JTable();
+        tblSearchRs = new javax.swing.JTable();
         lblCustTblTitle = new javax.swing.JLabel();
-        scpnPetTable = new javax.swing.JScrollPane();
-        petTable = new javax.swing.JTable();
-        lblGrmTblTitle = new javax.swing.JLabel();
-        scpnGrmTable = new javax.swing.JScrollPane();
-        grmTable = new javax.swing.JTable();
-        lblPetTblTitle = new javax.swing.JLabel();
-        pnlCustOptions = new javax.swing.JPanel();
-        btnAddCust = new javax.swing.JButton();
-        btnCustTblRefresh = new javax.swing.JButton();
-        pnlGrmOptions = new javax.swing.JPanel();
-        btnGrmTblRefresh = new javax.swing.JButton();
-        btnAddGrm = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        btnPetTblRefresh = new javax.swing.JButton();
-        btnAddGrm1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        pnlCurrentFocus = new javax.swing.JPanel();
+        btnAddRecord = new javax.swing.JButton();
+        btnTblRefresh = new javax.swing.JButton();
+        rbCustomer = new javax.swing.JRadioButton();
+        rbGroomer = new javax.swing.JRadioButton();
+        rbPet = new javax.swing.JRadioButton();
+        pnlCalendar = new javax.swing.JPanel();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
 
         setClosable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
@@ -90,7 +88,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        custTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblSearchRs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -101,185 +99,92 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        scpnCustTable.setViewportView(custTable);
+        scpnCustTable.setViewportView(tblSearchRs);
 
-        lblCustTblTitle.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
-        lblCustTblTitle.setText("CUSTOMERS");
+        lblCustTblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
+        lblCustTblTitle.setText("SEARCH RESULTS:");
 
-        petTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        scpnPetTable.setViewportView(petTable);
+        pnlCurrentFocus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Focus", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 24))); // NOI18N
 
-        lblGrmTblTitle.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
-        lblGrmTblTitle.setText("GROOMERS");
-
-        grmTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        scpnGrmTable.setViewportView(grmTable);
-
-        lblPetTblTitle.setFont(new java.awt.Font("Book Antiqua", 1, 24)); // NOI18N
-        lblPetTblTitle.setText("PETS");
-
-        pnlCustOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
-
-        btnAddCust.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnAddCust.setText("Add Customer");
-        btnAddCust.addActionListener(new java.awt.event.ActionListener() {
+        btnAddRecord.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        btnAddRecord.setText("Add Record");
+        btnAddRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddCustActionPerformed(evt);
+                btnAddRecordActionPerformed(evt);
             }
         });
 
-        btnCustTblRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnCustTblRefresh.setText("Refresh Table");
-        btnCustTblRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnTblRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        btnTblRefresh.setText("Refresh Table");
+        btnTblRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustTblRefreshActionPerformed(evt);
+                btnTblRefreshActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlCustOptionsLayout = new javax.swing.GroupLayout(pnlCustOptions);
-        pnlCustOptions.setLayout(pnlCustOptionsLayout);
-        pnlCustOptionsLayout.setHorizontalGroup(
-            pnlCustOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCustOptionsLayout.createSequentialGroup()
+        btngObjType.add(rbCustomer);
+        rbCustomer.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        rbCustomer.setText("Customer");
+
+        btngObjType.add(rbGroomer);
+        rbGroomer.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        rbGroomer.setText("Groomer");
+
+        btngObjType.add(rbPet);
+        rbPet.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        rbPet.setText("Pet");
+
+        javax.swing.GroupLayout pnlCurrentFocusLayout = new javax.swing.GroupLayout(pnlCurrentFocus);
+        pnlCurrentFocus.setLayout(pnlCurrentFocusLayout);
+        pnlCurrentFocusLayout.setHorizontalGroup(
+            pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlCustOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAddCust, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCustTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbPet)
+                    .addComponent(rbGroomer)
+                    .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
+                        .addComponent(btnTblRefresh)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddRecord))
+                    .addComponent(rbCustomer))
+                .addContainerGap(671, Short.MAX_VALUE))
         );
-        pnlCustOptionsLayout.setVerticalGroup(
-            pnlCustOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCustOptionsLayout.createSequentialGroup()
+        pnlCurrentFocusLayout.setVerticalGroup(
+            pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAddCust, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
-                .addComponent(btnCustTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbGroomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbPet)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        pnlGrmOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Groomer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
+        pnlCalendar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Calendar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
-        btnGrmTblRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnGrmTblRefresh.setText("Refresh Table");
-        btnGrmTblRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrmTblRefreshActionPerformed(evt);
-            }
-        });
+        jCalendar1.setWeekOfYearVisible(false);
 
-        btnAddGrm.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnAddGrm.setText("Add Groomer");
-        btnAddGrm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddGrmActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlGrmOptionsLayout = new javax.swing.GroupLayout(pnlGrmOptions);
-        pnlGrmOptions.setLayout(pnlGrmOptionsLayout);
-        pnlGrmOptionsLayout.setHorizontalGroup(
-            pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlGrmOptionsLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCalendarLayout = new javax.swing.GroupLayout(pnlCalendar);
+        pnlCalendar.setLayout(pnlCalendarLayout);
+        pnlCalendarLayout.setHorizontalGroup(
+            pnlCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCalendarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGrmTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddGrm, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlGrmOptionsLayout.setVerticalGroup(
-            pnlGrmOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGrmOptionsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAddGrm, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
-                .addComponent(btnGrmTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnlCalendarLayout.setVerticalGroup(
+            pnlCalendarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCalendarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-        );
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pet", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
-
-        btnPetTblRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnPetTblRefresh.setText("Refresh Table");
-        btnPetTblRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPetTblRefreshActionPerformed(evt);
-            }
-        });
-
-        btnAddGrm1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnAddGrm1.setText("Add Pet");
-        btnAddGrm1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddGrm1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPetTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddGrm1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(352, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAddGrm1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPetTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "General", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
-
-        jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        jButton1.setText("Refresh All Tables");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,121 +195,74 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scpnCustTable, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scpnPetTable)
-                    .addComponent(scpnGrmTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1945, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPetTblTitle)
-                            .addComponent(lblGrmTblTitle)
                             .addComponent(lblCustTblTitle)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(pnlCustOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(pnlGrmOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 958, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(pnlGrmOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlCustOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblCustTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scpnCustTable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblGrmTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpnGrmTable, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblPetTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(scpnPetTable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCustTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustTblRefreshActionPerformed
-             // TODO add your handling code here:
-    }//GEN-LAST:event_btnCustTblRefreshActionPerformed
+    private void btnTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblRefreshActionPerformed
+                 
+        String objType = this.getSelectedButtonText(btngObjType);
+        
+        CSTableModel.getData(tblSearchRs, objType);
+        tblSearchRs.setVisible(true);
+    }//GEN-LAST:event_btnTblRefreshActionPerformed
 
     private void winClose(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_winClose
         Login initLogin = new Login();
         this.getDesktopPane().add(initLogin);        
     }//GEN-LAST:event_winClose
 
-    private void btnAddCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustActionPerformed
+    private void btnAddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRecordActionPerformed
         //addCustomer addCust = new addCustomer();
         //this.getParent().add(addCust);
         //addCust.setVisible(true);
         //addCust.moveToFront();
-    }//GEN-LAST:event_btnAddCustActionPerformed
+    }//GEN-LAST:event_btnAddRecordActionPerformed
 
-    private void btnGrmTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrmTblRefreshActionPerformed
-        //GroomerTableModel.getData(grmTable); 
-    }//GEN-LAST:event_btnGrmTblRefreshActionPerformed
-
-    private void btnAddGrmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrmActionPerformed
-        //addGroomer addGrm = new addGroomer();
-        //this.getParent().add(addGrm);
-        //addGrm.setVisible(true);
-        //addGrm.moveToFront();
-    }//GEN-LAST:event_btnAddGrmActionPerformed
-
-    private void btnPetTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetTblRefreshActionPerformed
-        //PetTableModel.getData(petTable);
-    }//GEN-LAST:event_btnPetTblRefreshActionPerformed
-
-    private void btnAddGrm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGrm1ActionPerformed
-        //addPet addPet = new addPet();
-        //this.getParent().add(addPet);
-        //addPet.setVisible(true);
-        //addPet.moveToFront();
-    }//GEN-LAST:event_btnAddGrm1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //PetTableModel.getData(petTable);
-        //GroomerTableModel.getData(grmTable);
-        //CustomerTableModel.getData(custTable);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    
-
-    
+    public String getSelectedButtonText(ButtonGroup buttonGroup) {
+            
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddCust;
-    private javax.swing.JButton btnAddGrm;
-    private javax.swing.JButton btnAddGrm1;
-    private javax.swing.JButton btnCustTblRefresh;
-    private javax.swing.JButton btnGrmTblRefresh;
-    private javax.swing.JButton btnPetTblRefresh;
-    private javax.swing.JTable custTable;
-    private javax.swing.JTable grmTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton btnAddRecord;
+    private javax.swing.JButton btnTblRefresh;
+    private javax.swing.ButtonGroup btngObjType;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel lblCustTblTitle;
-    private javax.swing.JLabel lblGrmTblTitle;
-    private javax.swing.JLabel lblPetTblTitle;
-    private javax.swing.JTable petTable;
-    private javax.swing.JPanel pnlCustOptions;
-    private javax.swing.JPanel pnlGrmOptions;
+    private javax.swing.JPanel pnlCalendar;
+    private javax.swing.JPanel pnlCurrentFocus;
+    private javax.swing.JRadioButton rbCustomer;
+    private javax.swing.JRadioButton rbGroomer;
+    private javax.swing.JRadioButton rbPet;
     private javax.swing.JScrollPane scpnCustTable;
-    private javax.swing.JScrollPane scpnGrmTable;
-    private javax.swing.JScrollPane scpnPetTable;
+    private javax.swing.JTable tblSearchRs;
     // End of variables declaration//GEN-END:variables
 }

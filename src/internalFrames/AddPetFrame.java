@@ -251,7 +251,6 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSubmitActionPerformed
     }
     
-    
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtPetName.setText("");
         txtOwnerID.setText("");
@@ -260,13 +259,9 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
         txtBreed.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
-    
-    
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
-    
-    
     
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
             

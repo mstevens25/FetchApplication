@@ -1,37 +1,54 @@
-package appClasses;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package internalFrames;
+import appClasses.*;
+import desktop.*;
+import inputValidation.*;
 import internalFrames.*;
-import java.sql.*;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mattm
  */
-public class CustomerTableModel {
+public class CSTableModel {
     
     
-    
-    public static void getData(JTable table){
+     public static void getData(JTable table, String focus){
         
+        String sql = null;
         DefaultTableModel tblModel = null;
         Connection conn = null;
-        String sql = "SELECT * from customer";
+                        
+        
+        if (focus == "Groomer") {
+            sql = "select * from groomer"; }
+        else if (focus == "Pet") {
+            sql = "select * from pet"; }
+        else {
+            sql = "select * from customer"; }
+         
+        
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fetchdb", "root", "mysqlpw"); 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             
              // It creates and displays the table
-            tblModel = CustomerTableModel.buildTableModel(rs);
+            tblModel = CSTableModel.buildTableModel(rs);
 
             table.setModel(tblModel);
             // Closes the Connection
