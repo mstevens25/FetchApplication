@@ -221,11 +221,16 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblRefreshActionPerformed
-                 
+      
         String objType = this.getSelectedButtonText(btngObjType);
         
+        if (objType == "Customer" || objType == "Groomer" || objType == "Pet") {
+        
         CSTableModel.getData(tblSearchRs, objType);
-        tblSearchRs.setVisible(true);
+        tblSearchRs.setVisible(true); }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "Please select an object.", "Invalid", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnTblRefreshActionPerformed
 
     private void winClose(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_winClose
