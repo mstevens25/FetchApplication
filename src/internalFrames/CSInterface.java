@@ -64,6 +64,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         rbCustomer = new javax.swing.JRadioButton();
         rbGroomer = new javax.swing.JRadioButton();
         rbPet = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
         pnlCalendar = new javax.swing.JPanel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
 
@@ -134,6 +135,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
         rbPet.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         rbPet.setText("Pet");
 
+        jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        jButton1.setText("Search");
+
         javax.swing.GroupLayout pnlCurrentFocusLayout = new javax.swing.GroupLayout(pnlCurrentFocus);
         pnlCurrentFocus.setLayout(pnlCurrentFocusLayout);
         pnlCurrentFocusLayout.setHorizontalGroup(
@@ -142,28 +146,36 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbPet)
-                    .addComponent(rbGroomer)
-                    .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
-                        .addComponent(btnTblRefresh)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAddRecord))
-                    .addComponent(rbCustomer))
-                .addContainerGap(671, Short.MAX_VALUE))
+                    .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
+                            .addComponent(btnAddRecord)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1))
+                        .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
+                            .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbGroomer)
+                                .addComponent(rbCustomer))
+                            .addGap(18, 18, 18)
+                            .addComponent(btnTblRefresh))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCurrentFocusLayout.setVerticalGroup(
             pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rbCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbGroomer)
+                .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
+                        .addComponent(rbCustomer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbGroomer))
+                    .addComponent(btnTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rbPet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btnAddRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pnlCalendar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Calendar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
@@ -194,13 +206,13 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scpnCustTable, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scpnCustTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1945, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCustTblTitle)
                             .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 958, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -214,7 +226,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addComponent(scpnCustTable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,6 +272,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAddRecord;
     private javax.swing.JButton btnTblRefresh;
     private javax.swing.ButtonGroup btngObjType;
+    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel lblCustTblTitle;
     private javax.swing.JPanel pnlCalendar;
