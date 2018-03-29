@@ -43,7 +43,7 @@ public class CSTableModel {
          
         
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fetchdb", "root", "mysqlpw"); 
+            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123"); 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             
