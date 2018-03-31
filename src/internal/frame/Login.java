@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package internalFrames;
-import inputValidation.*;
+package internal.frame;
+import application.model.EmployeeModel;
+import data.validation.*;
 import desktop.*;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Vector;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -17,21 +19,13 @@ import javax.swing.JOptionPane;
  * @author Matt
  */
 public class Login extends javax.swing.JInternalFrame {
-    EmailValidator loginVal = new EmailValidator();
+    
+    DataValidation loginVal = new DataValidation();
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
-        
-        Toolkit tk = Toolkit.getDefaultToolkit();
-            int xsize = (int) tk.getScreenSize().getWidth();
-            int ysize = (int) tk.getScreenSize().getHeight();
-            
-        Dimension frameSize = this.getSize();
-            
-        this.setLocation((xsize - frameSize.width)/2, (ysize - frameSize.height)/2);
-        this.setVisible(true);
     }
 
     /**
@@ -50,7 +44,9 @@ public class Login extends javax.swing.JInternalFrame {
         pwtPassword = new javax.swing.JPasswordField();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
+        setTitle("LOGIN");
         setVisible(true);
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
@@ -82,6 +78,13 @@ public class Login extends javax.swing.JInternalFrame {
         btnReset.setMaximumSize(new java.awt.Dimension(77, 25));
         btnReset.setMinimumSize(new java.awt.Dimension(77, 25));
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,15 +96,17 @@ public class Login extends javax.swing.JInternalFrame {
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblPassword)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pwtPassword))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblUsername)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblPassword)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(pwtPassword))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblUsername)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,7 +131,8 @@ public class Login extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -135,14 +141,61 @@ public class Login extends javax.swing.JInternalFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
    
-        boolean chkEmail;
-        String email = txtUsername.getText();
-        chkEmail = loginVal.validate(email);
-
-        if(chkEmail) { 
-            CSInterface csFrame = new CSInterface();
-            this.getDesktopPane().add(csFrame);
-            this.dispose();
+        boolean chkEmailFormat, isFetchEmail;
+        String email = txtUsername.getText(),
+                       empPassword;
+        int departmentId = -1;
+        chkEmailFormat = loginVal.validateFormat(email);
+        
+         
+        
+        if(chkEmailFormat) { 
+            isFetchEmail = loginVal.valCompanyEmail(email);
+            if(isFetchEmail){
+                /*
+                CSInterface csFrame = new CSInterface();
+                FetchApplication.addInternalFrame(this.getDesktopPane(), csFrame);
+                this.dispose();
+                */
+                
+                
+                
+                EmployeeModel emp = EmployeeModel.chkEmpLogin(email);
+                /*if(loginData[0] == null || loginData[1] == null) {
+                    JOptionPane.showMessageDialog(null, "                   "
+                        + "Incorrect Domain (1)\nPlease use a valid \"Fetch Mobile "
+                        + "Grooming\" email.", "Email Validation", JOptionPane.OK_OPTION);
+                    txtUsername.setText("Email");
+                    pwtPassword.setText("");
+                } else {
+                    departmentId = Integer.parseInt(loginData[0]);
+                    empPassword = loginData[1];
+                */
+                
+                switch(emp.getDepartmentId()) {
+                    case 1: CSInterface csFrame = new CSInterface();
+                                FetchApplication.addInternalFrame(this.getDesktopPane(), csFrame);
+                                this.dispose();
+                                break;
+                        case 2: FinanceInterface fnFrame = new FinanceInterface();
+                                FetchApplication.addInternalFrame(this.getDesktopPane(), fnFrame);
+                                this.dispose();
+                                break;
+                        default: JOptionPane.showMessageDialog(null, "Unable to determine assigned department\n"
+                                + "Please contact system adminstrator.", "Email Validation", JOptionPane.OK_OPTION);
+                                txtUsername.setText("Email");
+                                pwtPassword.setText("");
+                                break;
+                    }
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "                   "
+                        + "Incorrect Domain (2)\nPlease use a valid \"Fetch Mobile "
+                        + "Grooming\" email.", "Email Validation", JOptionPane.OK_OPTION);
+                txtUsername.setText("Email");
+                pwtPassword.setText("");
+            }
+    
         } else {  
             JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
             txtUsername.setText("Email");
@@ -155,10 +208,16 @@ public class Login extends javax.swing.JInternalFrame {
         txtUsername.setText("");
     }//GEN-LAST:event_txtUsernameMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FinanceInterface financeFrame = new FinanceInterface();
+        FetchApplication.addInternalFrame(this.getDesktopPane(), financeFrame);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;

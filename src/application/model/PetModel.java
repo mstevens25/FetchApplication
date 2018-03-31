@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package appClasses;
+package application.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,40 +16,40 @@ import javax.swing.JOptionPane;
  * @author mattm
  */
 public class PetModel {
-    private int ownerID,
-                petID,
+    private int customerId,
+                petId,
                 age;
     private String name,
-                   petType,
+                   type,
                    breed;
-    private char petSex;
+    private char sex;
     
-    public PetModel(String name, String petType, char petSex, String breed, int age, int ownerID) { 
+    public PetModel(String name, String type, char sex, String breed, int age, int customerId) { 
         
         this.name = name;
-        this.petType = petType;
-        this.petSex = petSex;
+        this.type = type;
+        this.sex = sex;
         this.breed = breed;
         this.age = age;
-        this.ownerID = ownerID;
+        this.customerId = customerId;
     }
        
                
-    public int getOwnerID() { return ownerID; }
-    public int getPetID() { return petID; }
+    public int getCustomerId() { return customerId; }
+    public int getPetId() { return petId; }
     public int getAge() { return age; }
     public String getName() { return name; }
-    public String getPetType() { return petType; }
+    public String getType() { return type; }
     public String getBreed() { return breed; }
-    public char getPetSex() { return petSex; }
+    public char getSex() { return sex; }
     
-    public void setOwnerID(int ownerID) {  this.ownerID = ownerID; }
-    public void setPetID(int petID) { this.petID = petID; }
+    public void setOwnerID(int ownerID) {  this.customerId = customerId; }
+    public void setPetID(int petID) { this.petId = petId; }
     public void setAge(int age) { this.age = age; }
     public void setName(String name) { this.name = name; }
-    public void setPetType(String petType) { this.petType = petType; }
+    public void setType(String type) { this.type = type; }
     public void setBreed(String breed) { this.breed = breed; }
-    public void setPetSex(char petSex) { this.petSex = petSex; }
+    public void setSex(char sex) { this.sex = sex; }
     
     
     public static void addPet(PetModel pet) {
@@ -57,17 +57,18 @@ public class PetModel {
         Connection conn = null;
            
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/fetchdb", "root", "mysqlpw"); 
+            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123"); 
             PreparedStatement stmt = conn.prepareStatement("insert into pet"
-                +    " (name, type, sex, breed, age, owner)"
+                +    " (customerId, name, type, sex, breed, age)"
                 +    " values (?,?,?,?,?,?)");
+              
+            stmt.setString(1, Integer.toString(pet.getCustomerId()));
+            stmt.setString(2, pet.getName());
+            stmt.setString(3, pet.getType());
+            stmt.setString(4, Character.toString(pet.getSex()));
+            stmt.setString(5, pet.getBreed());
+            stmt.setString(6, Integer.toString(pet.getAge()));
             
-            stmt.setString(1, pet.getName());
-            stmt.setString(2, pet.getPetType());
-            stmt.setString(3, Character.toString(pet.getPetSex()));
-            stmt.setString(4, pet.getBreed());
-            stmt.setString(5, Integer.toString(pet.getAge()));
-            stmt.setString(6, Integer.toString(pet.getOwnerID()));
 
             
             int i = stmt.executeUpdate();

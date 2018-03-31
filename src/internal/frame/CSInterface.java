@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package internalFrames;
-import appClasses.*;
+package internal.frame;
+import desktop.FetchApplication;
 
 import java.awt.*;
 import java.sql.SQLException;
@@ -31,18 +31,12 @@ public class CSInterface extends javax.swing.JInternalFrame {
      */
     public CSInterface() {
         initComponents();
-        
-        Toolkit tk = Toolkit.getDefaultToolkit();
-            int xsize = (int) tk.getScreenSize().getWidth();
-            int ysize = (int) tk.getScreenSize().getHeight();
-            
-        this.setSize(xsize, ysize);
-    
-        this.setVisible(true);
-        
-        CSTableModel searchTbl = new CSTableModel();
+
+        /*
+        DBTableModel searchTbl = new DBTableModel();
         searchTbl.getData(tblSearchRs, "null");
         tblSearchRs.setVisible(false);
+        */
     }
 
     /**
@@ -69,6 +63,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         jCalendar1 = new com.toedter.calendar.JCalendar();
 
         setClosable(true);
+        setResizable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
         setFocusTraversalPolicyProvider(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -208,27 +203,32 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scpnCustTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1945, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scpnCustTable, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCustTblTitle)
-                            .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblCustTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCustTblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(scpnCustTable, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pnlCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,7 +240,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         
         if (objType == "Customer" || objType == "Groomer" || objType == "Pet") {
         
-        CSTableModel.getData(tblSearchRs, objType);
+        DBTableModel.getData(tblSearchRs, objType);
         tblSearchRs.setVisible(true); }
         else {
             JOptionPane.showMessageDialog(rootPane, "Please select an object.", "Invalid", JOptionPane.ERROR_MESSAGE);
@@ -248,8 +248,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTblRefreshActionPerformed
 
     private void winClose(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_winClose
-        Login initLogin = new Login();
-        this.getDesktopPane().add(initLogin);        
+        Login loginFrame = new Login();
+        FetchApplication.addInternalFrame(this.getDesktopPane(), loginFrame);
     }//GEN-LAST:event_winClose
 
     private void btnAddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRecordActionPerformed

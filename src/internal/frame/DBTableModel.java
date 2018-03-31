@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package internalFrames;
-import appClasses.*;
+package internal.frame;
 import desktop.*;
-import inputValidation.*;
-import internalFrames.*;
+import data.validation.*;
 
 
 import java.sql.Connection;
@@ -24,10 +22,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mattm
  */
-public class CSTableModel {
+public class DBTableModel {
     
     
-     public static void getData(JTable table, String focus){
+    public static void getData(JTable table, String focus){
         
         String sql = null;
         DefaultTableModel tblModel = null;
@@ -48,7 +46,7 @@ public class CSTableModel {
             ResultSet rs = stmt.executeQuery(sql);
             
              // It creates and displays the table
-            tblModel = CSTableModel.buildTableModel(rs);
+            tblModel = DBTableModel.buildTableModel(rs);
 
             table.setModel(tblModel);
             // Closes the Connection
@@ -59,6 +57,15 @@ public class CSTableModel {
             
         } catch (SQLException e) {
             e.printStackTrace();
+            return;
+        } finally{
+        
+            try{
+                if(conn != null)
+                conn.close(); }
+            catch(SQLException se){
+                se.printStackTrace();
+            }
         }
       
     }
@@ -67,26 +74,26 @@ public class CSTableModel {
     public static DefaultTableModel buildTableModel(ResultSet rs)
         throws SQLException {
 
-    ResultSetMetaData metaData = rs.getMetaData();
-
-    // names of columns
-    Vector<String> columnNames = new Vector<String>();
-    int columnCount = metaData.getColumnCount();
-    for (int column = 1; column <= columnCount; column++) {
-        columnNames.add(metaData.getColumnName(column));
-    }
-
-    // data of the table
-    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-    while (rs.next()) {
-        Vector<Object> vector = new Vector<Object>();
-        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-            vector.add(rs.getObject(columnIndex));
+        ResultSetMetaData metaData = rs.getMetaData();
+        
+        // names of columns
+        Vector<String> columnNames = new Vector<String>();
+        int columnCount = metaData.getColumnCount();
+        for (int column = 1; column <= columnCount; column++) {
+            columnNames.add(metaData.getColumnName(column));
         }
-        data.add(vector);
+
+        // data of the table
+        Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+        while (rs.next()) {
+            Vector<Object> vector = new Vector<Object>();
+            for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                vector.add(rs.getObject(columnIndex));
+            }
+            
+            data.add(vector);
+        }
+
+        return new DefaultTableModel(data, columnNames);
     }
-
-    return new DefaultTableModel(data, columnNames);
-
-}
 }

@@ -5,10 +5,11 @@ package desktop;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import internal.frame.Login;
 import java.awt.Toolkit;
 import javax.swing.*;
-import internalFrames.*;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 /**
@@ -22,22 +23,27 @@ public class FetchApplication extends javax.swing.JFrame {
      */
     public FetchApplication() {
         initComponents();
-
-        int scalx = 1050,
-            scaly = 1680;
-        /*Toolkit tk = Toolkit.getDefaultToolkit();
+    
+        /*
+        this.setLayout(new BorderLayout());      
+        this.add(mainDesktop, BorderLayout.CENTER);      
+        this.setExtendedState(MAXIMIZED_BOTH);     
+        mainDesktop.setBounds(this.getBounds());
+        */
+        
+        Toolkit tk = Toolkit.getDefaultToolkit();
             int xsize = (int) tk.getScreenSize().getWidth();
             int ysize = (int) tk.getScreenSize().getHeight();
             
-        this.setSize(xsize, ysize);*/
+        Dimension frameSize = this.getSize();
+            
+        this.setLocation((xsize - frameSize.width)/2, (ysize - frameSize.height)/2);
+        this.setVisible(true);
         
-        this.setLayout(new BorderLayout());      
-        this.add(desktop, BorderLayout.CENTER);      
-        this.setExtendedState(MAXIMIZED_BOTH);     
-        desktop.setBounds(this.getBounds());
-
         Login initLogin = new Login();
-        desktop.add(initLogin);
+        
+        this.addInternalFrame(mainDesktop, initLogin);
+        
     }
 
     /**
@@ -49,7 +55,7 @@ public class FetchApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktop = new javax.swing.JDesktopPane();
+        mainDesktop = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -67,21 +73,23 @@ public class FetchApplication extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        desktop.setPreferredSize(null);
+        javax.swing.GroupLayout mainDesktopLayout = new javax.swing.GroupLayout(mainDesktop);
+        mainDesktop.setLayout(mainDesktopLayout);
+        mainDesktopLayout.setHorizontalGroup(
+            mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1376, Short.MAX_VALUE)
+        );
+        mainDesktopLayout.setVerticalGroup(
+            mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 739, Short.MAX_VALUE)
+        );
 
-        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
-        desktop.setLayout(desktopLayout);
-        desktopLayout.setHorizontalGroup(
-            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1109, Short.MAX_VALUE)
-        );
-        desktopLayout.setVerticalGroup(
-            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 593, Short.MAX_VALUE)
-        );
+        menuBar.setFont(new java.awt.Font("Book Antiqua", 0, 16)); // NOI18N
+        menuBar.setPreferredSize(new java.awt.Dimension(107, 35));
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
+        fileMenu.setFont(new java.awt.Font("Book Antiqua", 0, 16)); // NOI18N
 
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Open");
@@ -109,6 +117,7 @@ public class FetchApplication extends javax.swing.JFrame {
 
         editMenu.setMnemonic('e');
         editMenu.setText("Edit");
+        editMenu.setFont(new java.awt.Font("Book Antiqua", 0, 16)); // NOI18N
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Cut");
@@ -130,6 +139,7 @@ public class FetchApplication extends javax.swing.JFrame {
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Help");
+        helpMenu.setFont(new java.awt.Font("Book Antiqua", 0, 16)); // NOI18N
 
         contentMenuItem.setMnemonic('c');
         contentMenuItem.setText("Contents");
@@ -148,17 +158,19 @@ public class FetchApplication extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 546, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(mainDesktop)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainDesktop)
                 .addContainerGap())
         );
 
-        desktop.getAccessibleContext().setAccessibleParent(desktop);
+        mainDesktop.getAccessibleContext().setAccessibleParent(mainDesktop);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,7 +186,7 @@ public class FetchApplication extends javax.swing.JFrame {
         /* Set the look and feel */
         try {
             // select Look and Feel
-            com.jtattoo.plaf.graphite.GraphiteLookAndFeel.setTheme("Green", "", "Fetch");
+            com.jtattoo.plaf.graphite.GraphiteLookAndFeel.setTheme("Green", "", "Fetch Grooming");
             UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
             
             // start application
@@ -189,6 +201,17 @@ public class FetchApplication extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    public static void addInternalFrame(JDesktopPane desktop, JInternalFrame frame) {
+       
+        Dimension desktopSize = desktop.getSize();
+        Dimension frameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - frameSize.width)/2, (desktopSize.height - frameSize.height)/2);
+
+        frame.setVisible(true);
+        desktop.add(frame);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
@@ -196,11 +219,11 @@ public class FetchApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
-    private javax.swing.JDesktopPane desktop;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;

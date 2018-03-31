@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package internalFrames;
-import inputValidation.*;
-import appClasses.*;
+package internal.frame;
+import application.model.GroomerModel;
+import data.validation.*;
 import desktop.*;
 
 import java.awt.Dimension;

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package internalFrames;
+package internal.frame;
 
-import appClasses.PetModel;
+import application.model.PetModel;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Enumeration;
