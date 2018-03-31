@@ -143,37 +143,27 @@ public class Login extends javax.swing.JInternalFrame {
    
         boolean chkEmailFormat, isFetchEmail;
         String email = txtUsername.getText(),
-                       empPassword;
-        int departmentId = -1;
+               empPassword = pwtPassword.getText();
         chkEmailFormat = loginVal.validateFormat(email);
         
          
         
         if(chkEmailFormat) { 
+            
             isFetchEmail = loginVal.valCompanyEmail(email);
+            
             if(isFetchEmail){
-                /*
-                CSInterface csFrame = new CSInterface();
-                FetchApplication.addInternalFrame(this.getDesktopPane(), csFrame);
-                this.dispose();
-                */
-                
-                
                 
                 EmployeeModel emp = EmployeeModel.chkEmpLogin(email);
-                /*if(loginData[0] == null || loginData[1] == null) {
-                    JOptionPane.showMessageDialog(null, "                   "
-                        + "Incorrect Domain (1)\nPlease use a valid \"Fetch Mobile "
-                        + "Grooming\" email.", "Email Validation", JOptionPane.OK_OPTION);
+                
+                if(!(emp.getPass().equals(empPassword))) {
+                    JOptionPane.showMessageDialog(null, "     Incorrect Password", "Password Validation", JOptionPane.OK_OPTION);
                     txtUsername.setText("Email");
                     pwtPassword.setText("");
                 } else {
-                    departmentId = Integer.parseInt(loginData[0]);
-                    empPassword = loginData[1];
-                */
-                
-                switch(emp.getDepartmentId()) {
-                    case 1: CSInterface csFrame = new CSInterface();
+                    
+                    switch(emp.getDepartmentId()) {
+                        case 1: CSInterface csFrame = new CSInterface();
                                 FetchApplication.addInternalFrame(this.getDesktopPane(), csFrame);
                                 this.dispose();
                                 break;
@@ -187,10 +177,10 @@ public class Login extends javax.swing.JInternalFrame {
                                 pwtPassword.setText("");
                                 break;
                     }
-                
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "                   "
-                        + "Incorrect Domain (2)\nPlease use a valid \"Fetch Mobile "
+                        + "Incorrect Domain\nPlease use a valid \"Fetch Mobile "
                         + "Grooming\" email.", "Email Validation", JOptionPane.OK_OPTION);
                 txtUsername.setText("Email");
                 pwtPassword.setText("");

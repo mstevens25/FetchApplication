@@ -110,7 +110,25 @@ public class FinanceInterface extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
 
+        setClosable(true);
         setTitle("FINANCE PORTAL");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+                winClose(evt);
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         tpnlInterface.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         tpnlInterface.setName(""); // NOI18N
@@ -760,6 +778,11 @@ public class FinanceInterface extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void winClose(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_winClose
+        Login loginFrame = new Login();
+        FetchApplication.addInternalFrame(this.getDesktopPane(), loginFrame);
+    }//GEN-LAST:event_winClose
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
