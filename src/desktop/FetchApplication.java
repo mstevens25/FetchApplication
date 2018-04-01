@@ -44,7 +44,11 @@ public class FetchApplication extends javax.swing.JFrame {
         mainDesktop.setBounds(this.getBounds());
         
         Login initLogin = new Login();
-        this.addInternalFrame(mainDesktop, initLogin);
+        
+        initLogin.setLocation(95, 400);
+
+        initLogin.setVisible(true);
+        mainDesktop.add(initLogin);
         
     }
 
