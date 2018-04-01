@@ -112,6 +112,8 @@ public class FinanceInterface extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("FINANCE PORTAL");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/desktop/dog_bowl.jpg"))); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }

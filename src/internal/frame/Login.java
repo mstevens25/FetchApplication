@@ -44,9 +44,9 @@ public class Login extends javax.swing.JInternalFrame {
         pwtPassword = new javax.swing.JPasswordField();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setTitle("LOGIN");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
         setVisible(true);
 
         lblTitle.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
@@ -55,7 +55,6 @@ public class Login extends javax.swing.JInternalFrame {
         lblUsername.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblUsername.setText("Username:");
 
-        txtUsername.setText("Email");
         txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtUsernameMouseClicked(evt);
@@ -78,13 +77,6 @@ public class Login extends javax.swing.JInternalFrame {
         btnReset.setMaximumSize(new java.awt.Dimension(77, 25));
         btnReset.setMinimumSize(new java.awt.Dimension(77, 25));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,17 +88,15 @@ public class Login extends javax.swing.JInternalFrame {
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblPassword)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(pwtPassword))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblUsername)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPassword)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(pwtPassword))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblUsername)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,9 +121,8 @@ public class Login extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,13 +145,15 @@ public class Login extends javax.swing.JInternalFrame {
                 
                 EmployeeModel emp = EmployeeModel.chkEmpLogin(email);
                 
-                if(!(emp.getPass().equals(empPassword))) {
+                if (!(emp.getEmail().equals(email))){
+                    JOptionPane.showMessageDialog(null, "     Invaild Username", "Username Validation", JOptionPane.OK_OPTION);
+                    txtUsername.setText("");
+                    pwtPassword.setText("");
+                } else if(!(emp.getPass().equals(empPassword))) {
                     JOptionPane.showMessageDialog(null, "     Incorrect Password", "Password Validation", JOptionPane.OK_OPTION);
-                    txtUsername.setText("Email");
                     pwtPassword.setText("");
                 } else {
-                    
-                    switch(emp.getDepartmentId()) {
+                        switch(emp.getDepartmentId()) {
                         case 1: CSInterface csFrame = new CSInterface();
                                 FetchApplication.addInternalFrame(this.getDesktopPane(), csFrame);
                                 this.dispose();
@@ -173,7 +164,7 @@ public class Login extends javax.swing.JInternalFrame {
                                 break;
                         default: JOptionPane.showMessageDialog(null, "Unable to determine assigned department\n"
                                 + "Please contact system adminstrator.", "Email Validation", JOptionPane.OK_OPTION);
-                                txtUsername.setText("Email");
+                                txtUsername.setText("");
                                 pwtPassword.setText("");
                                 break;
                     }
@@ -182,14 +173,18 @@ public class Login extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "                   "
                         + "Incorrect Domain\nPlease use a valid \"Fetch Mobile "
                         + "Grooming\" email.", "Email Validation", JOptionPane.OK_OPTION);
-                txtUsername.setText("Email");
+                txtUsername.setText("");
                 pwtPassword.setText("");
             }
     
-        } else {  
-            JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
-            txtUsername.setText("Email");
-            pwtPassword.setText("");
+        } else {
+            if(txtUsername.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a username.", "Validation", JOptionPane.OK_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Email!", "Email Validation", JOptionPane.OK_OPTION);
+                txtUsername.setText("");
+                pwtPassword.setText("");
+            }
         } 
 
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -198,16 +193,9 @@ public class Login extends javax.swing.JInternalFrame {
         txtUsername.setText("");
     }//GEN-LAST:event_txtUsernameMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FinanceInterface financeFrame = new FinanceInterface();
-        FetchApplication.addInternalFrame(this.getDesktopPane(), financeFrame);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;

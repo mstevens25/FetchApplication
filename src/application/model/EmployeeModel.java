@@ -136,6 +136,10 @@ public class EmployeeModel {
                     emp.setMiddleInitial(rs.getString("middleInitial"));
                     emp.setLastName(rs.getString("lastName"));
                 }
+                else {
+                    emp.setEmail("Invalid");
+                    emp.setPass("Invalid");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

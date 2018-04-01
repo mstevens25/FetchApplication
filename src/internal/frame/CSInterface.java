@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package internal.frame;
+import application.model.DBTableModel;
 import desktop.FetchApplication;
 
 import java.awt.*;
@@ -66,6 +67,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
         setFocusTraversalPolicyProvider(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }

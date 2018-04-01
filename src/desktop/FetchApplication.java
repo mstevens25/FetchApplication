@@ -22,14 +22,9 @@ public class FetchApplication extends javax.swing.JFrame {
      * Creates new form FetchApplication
      */
     public FetchApplication() {
+        String imagePath = "src/desktop/dog_face_wind_1120x700.jpg";
+        
         initComponents();
-    
-        /*
-        this.setLayout(new BorderLayout());      
-        this.add(mainDesktop, BorderLayout.CENTER);      
-        this.setExtendedState(MAXIMIZED_BOTH);     
-        mainDesktop.setBounds(this.getBounds());
-        */
         
         Toolkit tk = Toolkit.getDefaultToolkit();
             int xsize = (int) tk.getScreenSize().getWidth();
@@ -40,8 +35,15 @@ public class FetchApplication extends javax.swing.JFrame {
         this.setLocation((xsize - frameSize.width)/2, (ysize - frameSize.height)/2);
         this.setVisible(true);
         
-        Login initLogin = new Login();
+        JDesktopPane mainDesktop = this.intializeDesktop(imagePath, 1120, 700);
+        mainDesktop.setVisible(true);
         
+        this.setLayout(new BorderLayout());
+        this.setContentPane(mainDesktop);    
+        //this.setExtendedState(MAXIMIZED_BOTH);     
+        mainDesktop.setBounds(this.getBounds());
+        
+        Login initLogin = new Login();
         this.addInternalFrame(mainDesktop, initLogin);
         
     }
@@ -55,7 +57,6 @@ public class FetchApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainDesktop = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -72,17 +73,9 @@ public class FetchApplication extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout mainDesktopLayout = new javax.swing.GroupLayout(mainDesktop);
-        mainDesktop.setLayout(mainDesktopLayout);
-        mainDesktopLayout.setHorizontalGroup(
-            mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1376, Short.MAX_VALUE)
-        );
-        mainDesktopLayout.setVerticalGroup(
-            mainDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 739, Short.MAX_VALUE)
-        );
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1170, 810));
+        setSize(new java.awt.Dimension(1170, 810));
 
         menuBar.setFont(new java.awt.Font("Book Antiqua", 0, 16)); // NOI18N
         menuBar.setPreferredSize(new java.awt.Dimension(107, 35));
@@ -157,20 +150,12 @@ public class FetchApplication extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainDesktop)
-                .addContainerGap())
+            .addGap(0, 1144, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainDesktop)
-                .addContainerGap())
+            .addGap(0, 726, Short.MAX_VALUE)
         );
-
-        mainDesktop.getAccessibleContext().setAccessibleParent(mainDesktop);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,6 +197,27 @@ public class FetchApplication extends javax.swing.JFrame {
         frame.setVisible(true);
         desktop.add(frame);
     }
+    
+    private JDesktopPane intializeDesktop(String imagePath, int scalx, int scaly) {
+
+        // A specialized layered pane to be used with JInternalFrames
+        JDesktopPane desktop = new JDesktopPane() {
+            
+            ImageIcon icon = new ImageIcon(imagePath);
+            Image image = icon.getImage();
+
+            Image newimage = image.getScaledInstance(scalx, scaly, Image.SCALE_SMOOTH);
+           
+                
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(newimage, 20, 20, this);
+            }
+        };
+
+        return desktop;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
@@ -223,7 +229,6 @@ public class FetchApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JDesktopPane mainDesktop;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;

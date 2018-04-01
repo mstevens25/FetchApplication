@@ -73,6 +73,7 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Add New Groomer");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setFocusTraversalPolicyProvider(true);

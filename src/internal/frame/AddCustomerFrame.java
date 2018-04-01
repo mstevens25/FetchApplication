@@ -72,6 +72,7 @@ public class AddCustomerFrame extends javax.swing.JInternalFrame {
         btnClose = new javax.swing.JButton();
 
         setTitle("Add New Customer");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setFocusTraversalPolicyProvider(true);
