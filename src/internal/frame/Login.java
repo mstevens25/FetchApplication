@@ -131,25 +131,25 @@ public class Login extends javax.swing.JInternalFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
    
         boolean chkEmailFormat, isFetchEmail;
-        String email = txtUsername.getText(),
+        String //email = txtUsername.getText(),
                empPassword = pwtPassword.getText();
-        chkEmailFormat = loginVal.validateFormat(email);
+        chkEmailFormat = loginVal.validateFormat(txtUsername.getText());
         
          
         
         if(chkEmailFormat) { 
             
-            isFetchEmail = loginVal.valCompanyEmail(email);
+            isFetchEmail = loginVal.valCompanyEmail(txtUsername.getText());
             
             if(isFetchEmail){
                 
-                EmployeeModel emp = EmployeeModel.chkEmpLogin(email);
+                EmployeeModel emp = EmployeeModel.chkEmpLogin(txtUsername.getText());
                 
-                if (!(emp.getEmail().equals(email))){
+                if (!(emp.getEmail().equalsIgnoreCase(txtUsername.getText()))){
                     JOptionPane.showMessageDialog(null, "     Invaild Username", "Username Validation", JOptionPane.OK_OPTION);
                     txtUsername.setText("");
                     pwtPassword.setText("");
-                } else if(!(emp.getPass().equals(empPassword))) {
+                } else if(!(emp.getPass().equalsIgnoreCase(empPassword))) {
                     JOptionPane.showMessageDialog(null, "     Incorrect Password", "Password Validation", JOptionPane.OK_OPTION);
                     pwtPassword.setText("");
                 } else {
@@ -167,7 +167,7 @@ public class Login extends javax.swing.JInternalFrame {
                                 txtUsername.setText("");
                                 pwtPassword.setText("");
                                 break;
-                    }
+                        }
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "                   "
@@ -176,7 +176,6 @@ public class Login extends javax.swing.JInternalFrame {
                 txtUsername.setText("");
                 pwtPassword.setText("");
             }
-    
         } else {
             if(txtUsername.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter a username.", "Validation", JOptionPane.OK_OPTION);
@@ -186,7 +185,6 @@ public class Login extends javax.swing.JInternalFrame {
                 pwtPassword.setText("");
             }
         } 
-
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked

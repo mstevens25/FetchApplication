@@ -119,6 +119,7 @@ public class EmployeeModel {
         Connection conn = null;
         String sql = "SELECT * FROM employee";
         EmployeeModel emp = new EmployeeModel();
+        emp.setEmail("INVALID");
         
         try {
             conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123");
@@ -126,7 +127,7 @@ public class EmployeeModel {
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()){
-                if(rs.getString("email").equals(username)){
+                if(rs.getString("email").equalsIgnoreCase(username)){
                     emp.setEmployeeId(rs.getInt("employeeId"));
                     emp.setDepartmentId(rs.getInt("departmentId"));
                     emp.setEmail(rs.getString("email"));
@@ -135,11 +136,7 @@ public class EmployeeModel {
                     emp.setFirstName(rs.getString("firstName"));
                     emp.setMiddleInitial(rs.getString("middleInitial"));
                     emp.setLastName(rs.getString("lastName"));
-                }
-                else {
-                    emp.setEmail("Invalid");
-                    emp.setPass("Invalid");
-                }
+                } 
             }
         } catch (SQLException e) {
             e.printStackTrace();
