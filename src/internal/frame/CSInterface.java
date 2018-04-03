@@ -49,29 +49,31 @@ public class CSInterface extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btngObjType = new javax.swing.ButtonGroup();
+        btngFocus = new javax.swing.ButtonGroup();
+        pnlModify = new javax.swing.JPanel();
+        txtFocusID = new javax.swing.JTextField();
+        lblFocusID = new javax.swing.JLabel();
+        btnModify = new javax.swing.JButton();
         pnlCurrentFocus = new javax.swing.JPanel();
         rbCustomer = new javax.swing.JRadioButton();
         rbGroomer = new javax.swing.JRadioButton();
-        rbPet = new javax.swing.JRadioButton();
-        txtFocusID = new javax.swing.JTextField();
-        lblFocusID = new javax.swing.JLabel();
-        btnFocusClear = new javax.swing.JButton();
-        btnFocusSet = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        btnTblRefresh = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         btnAddRecord = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblFocus = new javax.swing.JTable();
-        lblFocusInfo = new javax.swing.JLabel();
+        pnlSearch = new javax.swing.JPanel();
+        lblField1 = new javax.swing.JLabel();
+        cmbField1 = new javax.swing.JComboBox<>();
+        btnSearch = new javax.swing.JButton();
+        txtField1 = new javax.swing.JTextField();
+        lblField2 = new javax.swing.JLabel();
+        cmbField2 = new javax.swing.JComboBox<>();
+        txtField2 = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
         setTitle("CUSTOMER SERVICE PORTAL");
         setFocusTraversalPolicyProvider(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(624, 307));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -90,81 +92,52 @@ public class CSInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        pnlCurrentFocus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Focus", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
-
-        btngObjType.add(rbCustomer);
-        rbCustomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        rbCustomer.setText("Customer");
-
-        btngObjType.add(rbGroomer);
-        rbGroomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        rbGroomer.setText("Groomer");
-
-        btngObjType.add(rbPet);
-        rbPet.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        rbPet.setText("Pet");
+        pnlModify.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modify", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
         lblFocusID.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblFocusID.setText("ID Number:");
 
-        btnFocusClear.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnFocusClear.setText("Clear");
+        btnModify.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnModify.setText("Modify Record");
 
-        btnFocusSet.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnFocusSet.setText("Set");
-
-        javax.swing.GroupLayout pnlCurrentFocusLayout = new javax.swing.GroupLayout(pnlCurrentFocus);
-        pnlCurrentFocus.setLayout(pnlCurrentFocusLayout);
-        pnlCurrentFocusLayout.setHorizontalGroup(
-            pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbPet)
-                    .addComponent(rbCustomer)
-                    .addComponent(rbGroomer)
-                    .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlModifyLayout = new javax.swing.GroupLayout(pnlModify);
+        pnlModify.setLayout(pnlModifyLayout);
+        pnlModifyLayout.setHorizontalGroup(
+            pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlModifyLayout.createSequentialGroup()
+                .addGroup(pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlModifyLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(lblFocusID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtFocusID, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCurrentFocusLayout.createSequentialGroup()
-                        .addComponent(btnFocusClear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFocusSet)))
+                    .addGroup(pnlModifyLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btnModify)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlCurrentFocusLayout.setVerticalGroup(
-            pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
+        pnlModifyLayout.setVerticalGroup(
+            pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlModifyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rbCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbGroomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbPet)
-                .addGap(18, 18, 18)
-                .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFocusID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFocusID))
-                .addGap(18, 18, 18)
-                .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFocusSet, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFocusClear))
+                .addGap(35, 35, 35)
+                .addComponent(btnModify)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Button", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
+        pnlCurrentFocus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Focus", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
-        btnTblRefresh.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        btnTblRefresh.setText("Refresh Table");
-        btnTblRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTblRefreshActionPerformed(evt);
-            }
-        });
+        btngFocus.add(rbCustomer);
+        rbCustomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbCustomer.setSelected(true);
+        rbCustomer.setText("Customer");
 
-        jButton1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        jButton1.setText("Search");
+        btngFocus.add(rbGroomer);
+        rbGroomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbGroomer.setText("Groomer");
 
         btnAddRecord.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnAddRecord.setText("Add Record");
@@ -174,45 +147,94 @@ public class CSInterface extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCurrentFocusLayout = new javax.swing.GroupLayout(pnlCurrentFocus);
+        pnlCurrentFocus.setLayout(pnlCurrentFocusLayout);
+        pnlCurrentFocusLayout.setHorizontalGroup(
+            pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTblRefresh)
-                    .addComponent(jButton1)
-                    .addComponent(btnAddRecord))
-                .addContainerGap(88, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnTblRefresh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbCustomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbGroomer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(btnAddRecord)
+                .addContainerGap())
+        );
+        pnlCurrentFocusLayout.setVerticalGroup(
+            pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
+                .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbCustomer)
+                    .addComponent(rbGroomer)
+                    .addComponent(btnAddRecord))
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
+        pnlSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
+
+        lblField1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        lblField1.setText("Field 1:");
+
+        cmbField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnSearch.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnSearch.setText("Search");
+
+        lblField2.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        lblField2.setText("Field 2:");
+
+        cmbField2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnClear.setText("Clear");
+
+        javax.swing.GroupLayout pnlSearchLayout = new javax.swing.GroupLayout(pnlSearch);
+        pnlSearch.setLayout(pnlSearchLayout);
+        pnlSearchLayout.setHorizontalGroup(
+            pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSearchLayout.createSequentialGroup()
+                        .addComponent(lblField1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlSearchLayout.createSequentialGroup()
+                        .addComponent(lblField2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlSearchLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClear)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSearch))
+                            .addGroup(pnlSearchLayout.createSequentialGroup()
+                                .addComponent(cmbField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        tblFocus.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblFocus);
-
-        lblFocusInfo.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
-        lblFocusInfo.setText("Focus Information:");
+        pnlSearchLayout.setVerticalGroup(
+            pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblField1)
+                    .addComponent(cmbField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblField2)
+                    .addComponent(cmbField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClear)
+                    .addComponent(btnSearch))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,47 +243,27 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(539, 539, 539))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblFocusInfo)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(pnlModify, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(16, 16, 16)
-                .addComponent(lblFocusInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTblRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTblRefreshActionPerformed
-      
-        String objType = this.getSelectedButtonText(btngObjType);
-        
-        if (objType == "Customer" || objType == "Groomer" || objType == "Pet") {
-        
-        DBTableModel.getData(tblFocus, objType);
-        tblFocus.setVisible(true); }
-        else {
-            JOptionPane.showMessageDialog(rootPane, "Please select an object.", "Invalid", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnTblRefreshActionPerformed
 
     private void winClose(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_winClose
         Login loginFrame = new Login();
@@ -269,10 +271,19 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_winClose
 
     private void btnAddRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRecordActionPerformed
-        //addCustomer addCust = new addCustomer();
-        //this.getParent().add(addCust);
-        //addCust.setVisible(true);
-        //addCust.moveToFront();
+        if(this.getSelectedButtonText(btngFocus).equals("Customer")) {
+            AddCustomerFrame addCust = new AddCustomerFrame();
+            FetchApplication.addInternalFrame(this.getDesktopPane(), addCust);
+            //this.getParent().add(addCust);
+            addCust.setVisible(true);
+            addCust.moveToFront();
+        } else {
+            AddGroomerFrame addGrm = new AddGroomerFrame();
+            FetchApplication.addInternalFrame(this.getDesktopPane(), addGrm);
+            //this.getParent().add(addCust);
+            addGrm.setVisible(true);
+            addGrm.moveToFront();
+        }
     }//GEN-LAST:event_btnAddRecordActionPerformed
 
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
@@ -288,20 +299,22 @@ public class CSInterface extends javax.swing.JInternalFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddRecord;
-    private javax.swing.JButton btnFocusClear;
-    private javax.swing.JButton btnFocusSet;
-    private javax.swing.JButton btnTblRefresh;
-    private javax.swing.ButtonGroup btngObjType;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.ButtonGroup btngFocus;
+    private javax.swing.JComboBox<String> cmbField1;
+    private javax.swing.JComboBox<String> cmbField2;
+    private javax.swing.JLabel lblField1;
+    private javax.swing.JLabel lblField2;
     private javax.swing.JLabel lblFocusID;
-    private javax.swing.JLabel lblFocusInfo;
     private javax.swing.JPanel pnlCurrentFocus;
+    private javax.swing.JPanel pnlModify;
+    private javax.swing.JPanel pnlSearch;
     private javax.swing.JRadioButton rbCustomer;
     private javax.swing.JRadioButton rbGroomer;
-    private javax.swing.JRadioButton rbPet;
-    private javax.swing.JTable tblFocus;
+    private javax.swing.JTextField txtField1;
+    private javax.swing.JTextField txtField2;
     private javax.swing.JTextField txtFocusID;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,9 +24,9 @@ public class DataValidation {
     
     public boolean valCompanyEmail (String inEmail) {
         String fetchEmail = "@fetchmobilegrooming.com";   
-        inEmail.toLowerCase();
+        String email = inEmail.toLowerCase();
         
-        boolean check = inEmail.contains(fetchEmail);
+        boolean check = email.contains(fetchEmail);
         return check;
     }
 }
