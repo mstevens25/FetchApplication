@@ -53,8 +53,10 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-            <BevelBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Add Pet">
+              <Font PropertyName="font" name="Book Antiqua" size="18" style="0"/>
+            </TitledBorder>
           </Border>
         </Property>
         <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
@@ -77,20 +79,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblPetSex" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblBreed" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAge" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="txtPetName" min="-2" pref="158" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="lblOwnerID" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Component id="txtOwnerID" min="-2" pref="180" max="-2" attributes="0"/>
-                          <EmptySpace min="304" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -98,18 +91,25 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtPetName" min="-2" pref="158" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="lblOwnerID" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="lblOwnerIDValue" pref="79" max="32767" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="txtBreed" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="169" max="32767" attributes="0"/>
                                   <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="rdbMale" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="rdbFemale" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="txtAge" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -120,36 +120,30 @@
                       </Group>
                   </Group>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
-                  <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="lblTitle" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPetName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPetName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtOwnerID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblOwnerIDValue" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lblPetType" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnReset" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="40" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -166,11 +160,6 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtBreed" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblBreed" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtAge" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAge" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -207,26 +196,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtBreed">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblAge">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Age:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtAge">
-        </Component>
         <Component class="javax.swing.JLabel" name="lblOwnerID">
           <Properties>
             <Property name="text" type="java.lang.String" value="Owner ID:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtOwnerID">
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblTitle">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Book Antiqua" size="24" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Add Pet"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSubmit">
@@ -286,6 +258,14 @@
               <ComponentRef name="btngPetType"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cat"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblOwnerIDValue">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Book Antiqua" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Invalid"/>
           </Properties>
         </Component>
       </SubComponents>

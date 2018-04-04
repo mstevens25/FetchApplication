@@ -4,34 +4,63 @@
  * and open the template in the editor.
  */
 package internal.frame;
-import application.model.GroomerModel;
-import data.validation.*;
-import desktop.*;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import application.model.CustomerModel;
+import application.model.GroomerModel;
+import desktop.FetchApplication;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author mattm
  */
-public class AddGroomerFrame extends javax.swing.JInternalFrame {
+public class ModifyCSRecord extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form AddGroomerFrame
+     * Creates new form ModifyCSRecord
      */
-    public AddGroomerFrame() {
+    public ModifyCSRecord() {
+        initComponents();
+    }
+    
+    public ModifyCSRecord(CustomerModel cust){
         initComponents();
         
-        Toolkit tk = Toolkit.getDefaultToolkit();
-            int xsize = (int) tk.getScreenSize().getWidth();
-            int ysize = (int) tk.getScreenSize().getHeight();
-            
-        Dimension frameSize = this.getSize();
-            
-        this.setLocation((xsize - frameSize.width)/2, (ysize - frameSize.height)/2);
-        this.setVisible(true);
+        txtFirstName.setText(cust.getFirstName());
+        txtMInitial.setText(cust.getMiddleInitial());
+        txtLastName.setText(cust.getLastName());
+        txtAddress1.setText(cust.getAddressLine1());
+        txtAddress2.setText(cust.getAddressLine2());
+        txtCity.setText(cust.getCity());
+        cmbState.setSelectedIndex(0);
+        txtZip.setText(cust.getZip());
+        txtEmail.setText(cust.getEmail());
+        txtPassword.setText(cust.getPass());
+        txtPhone.setText(cust.getPhone());
+        
+        
+        lblFocusIDValue.setText(Integer.toString(cust.getCustomerId()));
+        lblFocusID.setText("Customer ID:");
+    }
+    
+    public ModifyCSRecord(GroomerModel grm){
+        initComponents();
+        
+        txtFirstName.setText(grm.getFirstName());
+        txtMInitial.setText(grm.getMiddleInitial());
+        txtLastName.setText(grm.getLastName());
+        txtAddress1.setText(grm.getAddressLine1());
+        txtAddress2.setText(grm.getAddressLine2());
+        txtCity.setText(grm.getCity());
+        cmbState.setSelectedIndex(0);
+        txtZip.setText(grm.getZip());
+        txtEmail.setText(grm.getEmail());
+        txtPassword.setText(grm.getPass());
+        txtPhone.setText(grm.getPhone());
+        
+        
+        lblFocusIDValue.setText(Integer.toString(grm.getGroomerId()));
+        lblFocusID.setText("Groomer ID:");
     }
 
     /**
@@ -69,63 +98,43 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        lblFocusID = new javax.swing.JLabel();
+        lblFocusIDValue = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Add New Groomer");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
+        setTitle("Modify Record");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Groomer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modify Record", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
         jPanel1.setFocusTraversalPolicyProvider(true);
 
         lblFirstName.setText("First Name:");
 
+        txtFirstName.setToolTipText("");
         txtFirstName.setFocusCycleRoot(true);
-        txtFirstName.setFocusTraversalPolicyProvider(true);
-        txtFirstName.setNextFocusableComponent(txtMInitial);
 
         lblMInital.setText("Middle Initial:");
 
-        txtMInitial.setNextFocusableComponent(txtLastName);
-
         lblLastName.setText("Last Name:");
-
-        txtLastName.setNextFocusableComponent(txtPhone);
 
         lblPhone.setText("Phone:");
 
-        txtPhone.setNextFocusableComponent(txtEmail);
-
         lblEmail.setText("Email:");
-
-        txtEmail.setNextFocusableComponent(txtPassword);
 
         lblPassword.setText("Password:");
 
-        txtPassword.setNextFocusableComponent(txtAddress1);
-
         lblAddress1.setText("Address 1:");
-
-        txtAddress1.setNextFocusableComponent(txtAddress2);
 
         lblAddress2.setText("Address 2:");
 
-        txtAddress2.setNextFocusableComponent(txtCity);
-
         lblCity.setText("City:");
-
-        txtCity.setNextFocusableComponent(cmbState);
 
         lblState.setText("State:");
 
         cmbState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" }));
-        cmbState.setNextFocusableComponent(txtZip);
 
         lblZip.setText("ZIP:");
 
-        txtZip.setNextFocusableComponent(btnSubmit);
-
         btnSubmit.setText("Submit");
-        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -133,7 +142,6 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
         });
 
         btnReset.setText("Reset");
-        btnReset.setNextFocusableComponent(btnClose);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -142,12 +150,17 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
 
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setText("Close");
-        btnClose.setNextFocusableComponent(txtFirstName);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
             }
         });
+
+        lblFocusID.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        lblFocusID.setText("ID Number:");
+
+        lblFocusIDValue.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        lblFocusIDValue.setText("Invalid");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,15 +175,22 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
                     .addComponent(lblMInital)
                     .addComponent(lblFirstName)
                     .addComponent(lblLastName))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMInitial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLastName)
+                            .addComponent(txtEmail)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 81, Short.MAX_VALUE))
+                            .addComponent(txtPassword)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFirstName)))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -180,12 +200,17 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
                             .addComponent(lblState)
                             .addComponent(lblZip))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAddress2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(txtCity)
-                            .addComponent(txtAddress1)
-                            .addComponent(cmbState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAddress2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtZip, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cmbState, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblFocusID)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblFocusIDValue, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnSubmit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,7 +222,10 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFocusID)
+                    .addComponent(lblFocusIDValue))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFirstName)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,21 +267,21 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
                             .addComponent(lblZip)
                             .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnReset)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnReset, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSubmit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnClose)
-                        .addGap(0, 10, Short.MAX_VALUE))))
+                        .addGap(0, 11, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -277,11 +305,11 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Unable to Add New Customer", "Result", JOptionPane.OK_OPTION);
         } else {
 
-            GroomerModel tempGrm = new GroomerModel(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(),
+            CustomerModel tempCust = new CustomerModel(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(),
                 txtFirstName.getText(), txtMInitial.getText(), txtLastName.getText(), txtAddress1.getText(),
                 txtAddress2.getText(), txtCity.getText(), selectedState, txtZip.getText());
 
-            GroomerModel.addGroomer(tempGrm);
+            CustomerModel.addCustomer(tempCust);
         }
 
         txtFirstName.setText("");
@@ -327,6 +355,8 @@ public class AddGroomerFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblFocusID;
+    private javax.swing.JLabel lblFocusIDValue;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblMInital;
     private javax.swing.JLabel lblPassword;

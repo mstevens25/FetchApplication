@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package internal.frame;
+import application.model.CustomerModel;
 import application.model.DBTableModel;
+import application.model.GroomerModel;
 import desktop.FetchApplication;
 
 import java.awt.*;
@@ -26,13 +28,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CSInterface extends javax.swing.JInternalFrame {
     
-
     /**
      * Creates new form CSInterface
      */
     public CSInterface() {
         initComponents();
-
+        
+        
         /*
         DBTableModel searchTbl = new DBTableModel();
         searchTbl.getData(tblSearchRs, "null");
@@ -54,6 +56,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         txtFocusID = new javax.swing.JTextField();
         lblFocusID = new javax.swing.JLabel();
         btnModify = new javax.swing.JButton();
+        btnAddPet = new javax.swing.JButton();
         pnlCurrentFocus = new javax.swing.JPanel();
         rbCustomer = new javax.swing.JRadioButton();
         rbGroomer = new javax.swing.JRadioButton();
@@ -99,21 +102,35 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         btnModify.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnModify.setText("Modify Record");
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
+
+        btnAddPet.setText("Add Pet (Customer Only)");
+        btnAddPet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlModifyLayout = new javax.swing.GroupLayout(pnlModify);
         pnlModify.setLayout(pnlModifyLayout);
         pnlModifyLayout.setHorizontalGroup(
             pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlModifyLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlModifyLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lblFocusID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtFocusID, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlModifyLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btnModify)))
+                        .addGap(10, 10, 10)
+                        .addGroup(pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAddPet)
+                            .addComponent(btnModify))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlModifyLayout.setVerticalGroup(
@@ -123,8 +140,10 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addGroup(pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFocusID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFocusID))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnModify)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddPet)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -175,7 +194,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblField1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblField1.setText("Field 1:");
 
-        cmbField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "Email", "Last Name", "ID Number" }));
 
         btnSearch.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnSearch.setText("Search");
@@ -183,9 +202,14 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblField2.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblField2.setText("Field 2:");
 
-        cmbField2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbField2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "Email", "Last Name", "ID Number" }));
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlSearchLayout = new javax.swing.GroupLayout(pnlSearch);
         pnlSearch.setLayout(pnlSearchLayout);
@@ -197,23 +221,21 @@ public class CSInterface extends javax.swing.JInternalFrame {
                     .addGroup(pnlSearchLayout.createSequentialGroup()
                         .addComponent(lblField1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlSearchLayout.createSequentialGroup()
                         .addComponent(lblField2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlSearchLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSearchLayout.createSequentialGroup()
                                 .addComponent(btnClear)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearch))
                             .addGroup(pnlSearchLayout.createSequentialGroup()
-                                .addComponent(cmbField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(txtField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSearchLayout.setVerticalGroup(
@@ -229,11 +251,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
                     .addComponent(lblField2)
                     .addComponent(cmbField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnClear)
-                    .addComponent(btnSearch))
-                .addContainerGap())
+                    .addComponent(btnSearch)
+                    .addComponent(btnClear))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -257,9 +279,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -274,17 +296,65 @@ public class CSInterface extends javax.swing.JInternalFrame {
         if(this.getSelectedButtonText(btngFocus).equals("Customer")) {
             AddCustomerFrame addCust = new AddCustomerFrame();
             FetchApplication.addInternalFrame(this.getDesktopPane(), addCust);
-            //this.getParent().add(addCust);
             addCust.setVisible(true);
             addCust.moveToFront();
         } else {
             AddGroomerFrame addGrm = new AddGroomerFrame();
             FetchApplication.addInternalFrame(this.getDesktopPane(), addGrm);
-            //this.getParent().add(addCust);
             addGrm.setVisible(true);
             addGrm.moveToFront();
         }
     }//GEN-LAST:event_btnAddRecordActionPerformed
+
+    private void btnAddPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPetActionPerformed
+        AddPetFrame addPet = new AddPetFrame(txtFocusID.getText());
+        FetchApplication.addInternalFrame(this.getDesktopPane(), addPet);
+        addPet.setVisible(true);
+        addPet.moveToFront();
+    }//GEN-LAST:event_btnAddPetActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        cmbField1.setSelectedIndex(0);
+        cmbField2.setSelectedIndex(0);
+        txtField1.setText("");
+        txtField2.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        CustomerModel cust = new CustomerModel();
+        GroomerModel grm = new GroomerModel();
+        
+        if(txtFocusID.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "     Please enter an ID number, up to six numeric digits.", 
+                    "ID Number Validation", JOptionPane.OK_OPTION);
+        } else {
+            if(this.getSelectedButtonText(btngFocus).equals("Customer")) {
+                cust = CustomerModel.setFocus(Integer.parseInt(txtFocusID.getText()));
+        
+                if(cust.getCustomerId() == -1){
+                    JOptionPane.showMessageDialog(null, "     Customer not found.", 
+                            "Customer ID Validation", JOptionPane.OK_OPTION);
+                } else {
+                    ModifyCSRecord modRecFrame = new ModifyCSRecord(cust);
+                    FetchApplication.addInternalFrame(this.getDesktopPane(), modRecFrame);
+                    modRecFrame.setVisible(true);
+                    modRecFrame.moveToFront();
+                }
+            } else {
+                grm = GroomerModel.setFocus(Integer.parseInt(txtFocusID.getText()));
+        
+                if(grm.getGroomerId() == -1){
+                    JOptionPane.showMessageDialog(null, "     Groomer not found.", 
+                            "Groomer ID Validation", JOptionPane.OK_OPTION);
+                } else {
+                    ModifyCSRecord modRecFrame = new ModifyCSRecord(grm);
+                    FetchApplication.addInternalFrame(this.getDesktopPane(), modRecFrame);
+                    modRecFrame.setVisible(true);
+                    modRecFrame.moveToFront();
+                }
+            }
+        }
+    }//GEN-LAST:event_btnModifyActionPerformed
 
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
             
@@ -297,7 +367,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
         return null;
     }
     
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddPet;
     private javax.swing.JButton btnAddRecord;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnModify;

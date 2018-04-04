@@ -152,25 +152,3 @@ public class EmployeeModel {
         return emp;
     }
 }
-        /*
-            
-            int columnCount = metaData.getColumnCount();
-          
-            
-            while (rs.next()) {
-                for (int count = 1; count <= columnCount; count++) {
-                    employees.add(rs.getObject(count));
-                }
-                //data.add(employees);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally{
-            try{
-                if(conn != null)
-                conn.close(); }
-            catch(SQLException se){
-                se.printStackTrace();
-            }
-        }
-        */

@@ -44,6 +44,7 @@ public class Login extends javax.swing.JInternalFrame {
         pwtPassword = new javax.swing.JPasswordField();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        btnRecover = new javax.swing.JButton();
 
         setTitle("LOGIN");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
@@ -55,6 +56,8 @@ public class Login extends javax.swing.JInternalFrame {
         lblUsername.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblUsername.setText("Username:");
 
+        txtUsername.setFocusCycleRoot(true);
+        txtUsername.setNextFocusableComponent(pwtPassword);
         txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtUsernameMouseClicked(evt);
@@ -64,8 +67,11 @@ public class Login extends javax.swing.JInternalFrame {
         lblPassword.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblPassword.setText("Password:");
 
+        pwtPassword.setNextFocusableComponent(btnSubmit);
+
         btnSubmit.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnSubmit.setText("Submit");
+        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -76,6 +82,15 @@ public class Login extends javax.swing.JInternalFrame {
         btnReset.setText("Reset");
         btnReset.setMaximumSize(new java.awt.Dimension(77, 25));
         btnReset.setMinimumSize(new java.awt.Dimension(77, 25));
+        btnReset.setNextFocusableComponent(btnRecover);
+
+        btnRecover.setText("Recover Login");
+        btnRecover.setNextFocusableComponent(txtUsername);
+        btnRecover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecoverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,15 +103,17 @@ public class Login extends javax.swing.JInternalFrame {
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblPassword)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pwtPassword))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblUsername)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRecover)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblPassword)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(pwtPassword))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblUsername)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,8 +138,9 @@ public class Login extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSubmit)
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRecover))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,7 +209,12 @@ public class Login extends javax.swing.JInternalFrame {
         txtUsername.setText("");
     }//GEN-LAST:event_txtUsernameMouseClicked
 
+    private void btnRecoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecoverActionPerformed
+        JOptionPane.showMessageDialog(null, "Please contact your administrator.");
+    }//GEN-LAST:event_btnRecoverActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRecover;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel lblPassword;

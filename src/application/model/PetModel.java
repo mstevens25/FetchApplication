@@ -17,27 +17,24 @@ import javax.swing.JOptionPane;
  */
 public class PetModel {
     private int customerId,
-                petId,
-                age;
+                petId;
     private String name,
                    type,
                    breed;
     private char sex;
     
-    public PetModel(String name, String type, char sex, String breed, int age, int customerId) { 
+    public PetModel(String name, String type, char sex, String breed, int customerId) { 
         
         this.name = name;
         this.type = type;
         this.sex = sex;
         this.breed = breed;
-        this.age = age;
         this.customerId = customerId;
     }
        
                
     public int getCustomerId() { return customerId; }
     public int getPetId() { return petId; }
-    public int getAge() { return age; }
     public String getName() { return name; }
     public String getType() { return type; }
     public String getBreed() { return breed; }
@@ -45,7 +42,6 @@ public class PetModel {
     
     public void setOwnerID(int ownerID) {  this.customerId = customerId; }
     public void setPetID(int petID) { this.petId = petId; }
-    public void setAge(int age) { this.age = age; }
     public void setName(String name) { this.name = name; }
     public void setType(String type) { this.type = type; }
     public void setBreed(String breed) { this.breed = breed; }
@@ -59,7 +55,7 @@ public class PetModel {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123"); 
             PreparedStatement stmt = conn.prepareStatement("insert into pet"
-                +    " (customerId, name, type, sex, breed, age)"
+                +    " (customerId, name, type, sex, breed)"
                 +    " values (?,?,?,?,?,?)");
               
             stmt.setString(1, Integer.toString(pet.getCustomerId()));
@@ -67,7 +63,6 @@ public class PetModel {
             stmt.setString(3, pet.getType());
             stmt.setString(4, Character.toString(pet.getSex()));
             stmt.setString(5, pet.getBreed());
-            stmt.setString(6, Integer.toString(pet.getAge()));
             
 
             

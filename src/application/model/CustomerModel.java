@@ -30,7 +30,8 @@ public class CustomerModel {
                    state,
                    zip;
     
-    
+    public CustomerModel(){
+    }
     
     public CustomerModel(String email, String pass, String phone, String firstName, String middleInitial,
                     String lastName, String addressLine1, String addressLine2, String city, String state, String zip) { 
@@ -121,4 +122,47 @@ public class CustomerModel {
         }
     }
   }
+    
+    public static CustomerModel setFocus(int focusID){
+
+        
+        Connection conn = null;
+        String sql = "SELECT * FROM customer";
+        CustomerModel cust = new CustomerModel();
+        cust.setCustomerId(-1);
+        
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                if(rs.getInt("customerId") == focusID){
+                    cust.setCustomerId(rs.getInt("customerId"));
+                    cust.setEmail(rs.getString("email"));
+                    cust.setPass(rs.getString("pass"));
+                    cust.setPhone(rs.getString("phone"));
+                    cust.setFirstName(rs.getString("firstName"));
+                    cust.setMiddleInitial(rs.getString("middleInitial"));
+                    cust.setLastName(rs.getString("lastName"));
+                    cust.setAddressLine1(rs.getString("addressLine1"));
+                    cust.setAddressLine2(rs.getString("addressLine2"));
+                    cust.setCity(rs.getString("city"));
+                    cust.setState(rs.getString("state"));
+                    cust.setZip(rs.getString("zip"));
+                } 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try{
+                if(conn != null)
+                conn.close(); }
+            catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        
+        return cust;
+    }
 }

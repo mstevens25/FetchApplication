@@ -8,7 +8,9 @@ package application.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +30,9 @@ public class GroomerModel {
                    city,
                    state,
                    zip;
+    
+    public GroomerModel() {
+    }
     
     public GroomerModel(String email, String pass, String phone, String firstName, String middleInitial,
                     String lastName, String addressLine1, String addressLine2, String city, String state, String zip) { 
@@ -115,5 +120,48 @@ public class GroomerModel {
                 se.printStackTrace();
             }
         }
+    }
+    
+    public static GroomerModel setFocus(int focusID){
+
+        
+        Connection conn = null;
+        String sql = "SELECT * FROM groomer";
+        GroomerModel grm = new GroomerModel();
+        grm.setGroomerId(-1);
+        
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                if(rs.getInt("groomerId") == focusID){
+                    grm.setGroomerId(rs.getInt("groomerId"));
+                    grm.setEmail(rs.getString("email"));
+                    grm.setPass(rs.getString("pass"));
+                    grm.setPhone(rs.getString("phone"));
+                    grm.setFirstName(rs.getString("firstName"));
+                    grm.setMiddleInitial(rs.getString("middleInitial"));
+                    grm.setLastName(rs.getString("lastName"));
+                    grm.setAddressLine1(rs.getString("addressLine1"));
+                    grm.setAddressLine2(rs.getString("addressLine2"));
+                    grm.setCity(rs.getString("city"));
+                    grm.setState(rs.getString("state"));
+                    grm.setZip(rs.getString("zip"));
+                } 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try{
+                if(conn != null)
+                conn.close(); }
+            catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        
+        return grm;
     }
 }
