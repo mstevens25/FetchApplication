@@ -6,8 +6,15 @@
 package internal.frame;
 
 import application.model.CustomerModel;
+import application.model.EmployeeModel;
 import application.model.GroomerModel;
 import desktop.FetchApplication;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +22,15 @@ import javax.swing.JOptionPane;
  * @author mattm
  */
 public class ModifyCSRecord extends javax.swing.JInternalFrame {
-
+    private static char type = 'n';
+    
+    public static char getType(){
+        return ModifyCSRecord.type;
+    }
+    
+    public static void setType(char focusType){
+        ModifyCSRecord.type = focusType;
+    }
     /**
      * Creates new form ModifyCSRecord
      */
@@ -32,7 +47,7 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
         txtAddress1.setText(cust.getAddressLine1());
         txtAddress2.setText(cust.getAddressLine2());
         txtCity.setText(cust.getCity());
-        cmbState.setSelectedIndex(0);
+        cmbState.setSelectedItem(cust.getState());
         txtZip.setText(cust.getZip());
         txtEmail.setText(cust.getEmail());
         txtPassword.setText(cust.getPass());
@@ -41,6 +56,8 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
         
         lblFocusIDValue.setText(Integer.toString(cust.getCustomerId()));
         lblFocusID.setText("Customer ID:");
+        
+        ModifyCSRecord.setType('c');
     }
     
     public ModifyCSRecord(GroomerModel grm){
@@ -52,7 +69,7 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
         txtAddress1.setText(grm.getAddressLine1());
         txtAddress2.setText(grm.getAddressLine2());
         txtCity.setText(grm.getCity());
-        cmbState.setSelectedIndex(0);
+        cmbState.setSelectedItem(grm.getState());
         txtZip.setText(grm.getZip());
         txtEmail.setText(grm.getEmail());
         txtPassword.setText(grm.getPass());
@@ -61,6 +78,8 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
         
         lblFocusIDValue.setText(Integer.toString(grm.getGroomerId()));
         lblFocusID.setText("Groomer ID:");
+        
+        ModifyCSRecord.setType('g');
     }
 
     /**
@@ -296,33 +315,8 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-
-        String selectedState =  (String) cmbState.getSelectedItem();
-
-        if (selectedState == "--") selectedState = "";
-
-        if (selectedState == "") {
-            JOptionPane.showMessageDialog(null, "Unable to Add New Customer", "Result", JOptionPane.OK_OPTION);
-        } else {
-
-            CustomerModel tempCust = new CustomerModel(txtEmail.getText(), txtPassword.getText(), txtPhone.getText(),
-                txtFirstName.getText(), txtMInitial.getText(), txtLastName.getText(), txtAddress1.getText(),
-                txtAddress2.getText(), txtCity.getText(), selectedState, txtZip.getText());
-
-            CustomerModel.addCustomer(tempCust);
-        }
-
-        txtFirstName.setText("");
-        txtMInitial.setText("");
-        txtLastName.setText("");
-        txtAddress1.setText("");
-        txtAddress2.setText("");
-        txtCity.setText("");
-        cmbState.setSelectedIndex(0);
-        txtZip.setText("");
-        txtEmail.setText("");
-        txtPassword.setText("");
-        txtPhone.setText("");
+        ModifyCSRecord.modifyRecord(this);
+        this.dispose();
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -343,6 +337,61 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private static void modifyRecord(ModifyCSRecord modFrame){
+        
+    Connection conn = null;
+    String sql = null;
+    String selectedState =  (String) modFrame.cmbState.getSelectedItem();
+    
+    try {    
+        conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123"); 
+        if(type == 'c'){
+            sql = "UPDATE customer"
+                +    " SET email = ?, pass = ?, phone = ?, firstName = ?, middleInitial = ?, lastName = ?, addressLine1 = ?, addressLine2 = ?, city = ?, state = ?, zip = ?"
+                +    " WHERE customerId = ?;";
+        } else {
+            sql = "UPDATE groomer"
+                +    " SET email = ?, pass = ?, phone = ?, firstName = ?, middleInitial = ?, lastName = ?, addressLine1 = ?, addressLine2 = ?, city = ?, state = ?, zip = ?"
+                +    " WHERE groomerId = ?;";
+        }
+        
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        
+            stmt.setString(1, modFrame.txtEmail.getText());
+            stmt.setString(2, modFrame.txtPassword.getText());
+            stmt.setString(3, modFrame.txtPhone.getText());
+            stmt.setString(4, modFrame.txtFirstName.getText());
+            stmt.setString(5, modFrame.txtMInitial.getText());
+            stmt.setString(6, modFrame.txtLastName.getText());
+            stmt.setString(7, modFrame.txtAddress1.getText());
+            stmt.setString(8, modFrame.txtAddress2.getText());
+            stmt.setString(9, modFrame.txtCity.getText());
+            stmt.setString(10, selectedState);
+            stmt.setString(11, modFrame.txtZip.getText());
+            
+            stmt.setString(12, modFrame.lblFocusIDValue.getText());
+            
+            int i = stmt.executeUpdate();
+            
+            if(i>0) {
+                JOptionPane.showMessageDialog(null, "Record modified successfully.", "Result", JOptionPane.OK_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Unable to modify Record.", "Result", JOptionPane.OK_OPTION);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        } finally{
+        
+            try{
+                if(conn != null)
+                conn.close();
+            } catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
