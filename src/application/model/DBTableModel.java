@@ -10,6 +10,7 @@ import data.validation.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -54,6 +55,62 @@ public class DBTableModel {
             
             
         
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        } finally{
+        
+            try{
+                if(conn != null)
+                conn.close(); }
+            catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+      
+    }
+    
+    
+    public static void searchData(JTable table, String focus, int sType, String search){
+        
+        String sql = null,
+               focusType = null;
+        DefaultTableModel tblModel = null;
+        Connection conn = null;
+                        
+        
+        if (focus == "Groomer") {
+            sql = "SELECT * from groomer"; 
+            focusType = "groomerId"; 
+        } else if (focus == "Pet") {
+            sql = "SELECT * from pet";
+            focusType = "petId"; 
+        } else {
+            sql = "SELECT * from customer"; 
+            focusType = "customerId"; 
+        }
+        
+        if(sType == 1){
+                sql = sql.concat(" WHERE " + "email='" + search + "';");
+            } else if (sType == 2){
+                sql = sql.concat(" WHERE " + "lastName='" + search + "';");
+            } else {
+                sql = sql.concat(" WHERE " + focusType + "='" + search + "';");
+            }
+        
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123");             
+            Statement stmt = conn.createStatement();
+            
+            ResultSet rs = stmt.executeQuery(sql);
+            
+             // It creates and displays the table
+            tblModel = DBTableModel.buildTableModel(rs);
+
+            table.setModel(tblModel);
+            // Closes the Connection
+            //JOptionPane.showMessageDialog(null, new JScrollPane(table));
             
         } catch (SQLException e) {
             e.printStackTrace();

@@ -66,9 +66,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
         cmbField1 = new javax.swing.JComboBox<>();
         btnSearch = new javax.swing.JButton();
         txtField1 = new javax.swing.JTextField();
-        lblField2 = new javax.swing.JLabel();
-        cmbField2 = new javax.swing.JComboBox<>();
-        txtField2 = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
 
         setClosable(true);
@@ -198,11 +195,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         btnSearch.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnSearch.setText("Search");
-
-        lblField2.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        lblField2.setText("Field 2:");
-
-        cmbField2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "Email", "Last Name", "ID Number" }));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -225,33 +222,21 @@ public class CSInterface extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlSearchLayout.createSequentialGroup()
-                        .addComponent(lblField2)
+                        .addGap(165, 165, 165)
+                        .addComponent(btnClear)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSearchLayout.createSequentialGroup()
-                                .addComponent(btnClear)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSearch))
-                            .addGroup(pnlSearchLayout.createSequentialGroup()
-                                .addComponent(cmbField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(btnSearch)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSearchLayout.setVerticalGroup(
             pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSearchLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(29, 29, 29)
                 .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblField1)
                     .addComponent(cmbField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblField2)
-                    .addComponent(cmbField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch)
                     .addComponent(btnClear))
@@ -315,9 +300,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         cmbField1.setSelectedIndex(0);
-        cmbField2.setSelectedIndex(0);
+        //cmbField2.setSelectedIndex(0);
         txtField1.setText("");
-        txtField2.setText("");
+        //txtField2.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -356,6 +341,27 @@ public class CSInterface extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnModifyActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String fieldOne = null,
+               sType = this.getSelectedButtonText(btngFocus); 
+        int sField = cmbField1.getSelectedIndex();
+        
+
+        
+        if(cmbField1.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "     Please select a field type.", 
+                            "Search Field Check", JOptionPane.OK_OPTION);
+        } else if (txtField1.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "     Please enter a field value.", 
+                            "Search Field Check", JOptionPane.OK_OPTION);
+        } else {
+            CSSearchFrame sFrame = new CSSearchFrame(sType, sField, this.txtField1.getText());
+            FetchApplication.addInternalFrame(this.getDesktopPane(), sFrame);
+            sFrame.setVisible(true);
+            sFrame.moveToFront();
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
             
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
@@ -376,9 +382,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.ButtonGroup btngFocus;
     private javax.swing.JComboBox<String> cmbField1;
-    private javax.swing.JComboBox<String> cmbField2;
     private javax.swing.JLabel lblField1;
-    private javax.swing.JLabel lblField2;
     private javax.swing.JLabel lblFocusID;
     private javax.swing.JPanel pnlCurrentFocus;
     private javax.swing.JPanel pnlModify;
@@ -386,7 +390,6 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rbCustomer;
     private javax.swing.JRadioButton rbGroomer;
     private javax.swing.JTextField txtField1;
-    private javax.swing.JTextField txtField2;
     private javax.swing.JTextField txtFocusID;
     // End of variables declaration//GEN-END:variables
 }

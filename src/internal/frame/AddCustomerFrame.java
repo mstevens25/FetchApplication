@@ -122,6 +122,7 @@ public class AddCustomerFrame extends javax.swing.JInternalFrame {
 
         txtZip.setNextFocusableComponent(btnSubmit);
 
+        btnSubmit.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnSubmit.setText("Submit");
         btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +131,7 @@ public class AddCustomerFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReset.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnReset.setText("Reset");
         btnReset.setNextFocusableComponent(btnClose);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +141,7 @@ public class AddCustomerFrame extends javax.swing.JInternalFrame {
         });
 
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
+        btnClose.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnClose.setText("Close");
         btnClose.setNextFocusableComponent(txtFirstName);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
