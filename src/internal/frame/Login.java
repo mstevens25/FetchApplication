@@ -7,6 +7,7 @@ package internal.frame;
 import application.model.EmployeeModel;
 import data.validation.*;
 import desktop.*;
+import fetchfinance1.*;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JInternalFrame {
     
-    DataValidation loginVal = new DataValidation();
+    EmailFilter loginVal = new EmailFilter();
     /**
      * Creates new form Login
      */
@@ -176,7 +177,7 @@ public class Login extends javax.swing.JInternalFrame {
                                 FetchApplication.addInternalFrame(this.getDesktopPane(), csFrame);
                                 this.dispose();
                                 break;
-                        case 2: FinanceInterface fnFrame = new FinanceInterface();
+                        case 2: financeJFrame fnFrame = new financeJFrame();
                                 FetchApplication.addInternalFrame(this.getDesktopPane(), fnFrame);
                                 this.dispose();
                                 break;

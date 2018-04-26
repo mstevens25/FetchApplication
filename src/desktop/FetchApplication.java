@@ -9,6 +9,7 @@ import internal.frame.Login;
 import java.awt.Toolkit;
 import javax.swing.*;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -45,7 +46,7 @@ public class FetchApplication extends javax.swing.JFrame {
         
         Login initLogin = new Login();
         
-        initLogin.setLocation(95, 400);
+        initLogin.setLocation(145, 450);
 
         initLogin.setVisible(true);
         mainDesktop.add(initLogin);
@@ -78,8 +79,8 @@ public class FetchApplication extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1170, 810));
-        setSize(new java.awt.Dimension(1170, 810));
+        setPreferredSize(new java.awt.Dimension(1270, 910));
+        setSize(new java.awt.Dimension(1270, 910));
 
         menuBar.setFont(new java.awt.Font("Book Antiqua", 0, 16)); // NOI18N
         menuBar.setPreferredSize(new java.awt.Dimension(107, 35));
@@ -212,11 +213,14 @@ public class FetchApplication extends javax.swing.JFrame {
 
             Image newimage = image.getScaledInstance(scalx, scaly, Image.SCALE_SMOOTH);
            
-                
+            Dimension imgSize = new Dimension(newimage.getWidth(rootPane), newimage.getHeight(rootPane));
+            Dimension deskSize = new Dimension(this.getSize());
+            
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(newimage, 20, 20, this);
+                g.setColor(Color.red);
+                g.drawImage(newimage, 70, 70, this);
             }
         };
 

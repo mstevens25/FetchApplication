@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package internal.frame;
-import application.model.CustomerModel;
-import application.model.DBTableModel;
-import application.model.GroomerModel;
+import data.validation.*;
+import application.model.*;
 import desktop.FetchApplication;
 
 import java.awt.*;
@@ -22,24 +21,22 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.DocumentFilter;
 /**
  *
  * @author Matt
  */
 public class CSInterface extends javax.swing.JInternalFrame {
     
+    DocumentFilter idFilter = new IDNumberFilter();
     /**
      * Creates new form CSInterface
      */
     public CSInterface() {
         initComponents();
         
-        
-        /*
-        DBTableModel searchTbl = new DBTableModel();
-        searchTbl.getData(tblSearchRs, "null");
-        tblSearchRs.setVisible(false);
-        */
+        ((AbstractDocument)txtFocusID.getDocument()).setDocumentFilter(idFilter);
     }
 
     /**
@@ -94,6 +91,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         pnlModify.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modify", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
+        txtFocusID.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+
         lblFocusID.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblFocusID.setText("ID Number:");
 
@@ -105,6 +104,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
             }
         });
 
+        btnAddPet.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnAddPet.setText("Add Pet (Customer Only)");
         btnAddPet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,9 +137,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addGroup(pnlModifyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFocusID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFocusID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(btnModify)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddPet)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -191,6 +191,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         lblField1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblField1.setText("Field 1:");
 
+        cmbField1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         cmbField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "Email", "Last Name", "ID Number" }));
 
         btnSearch.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
@@ -201,6 +202,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
             }
         });
 
+        txtField1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+
+        btnClear.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +270,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,10 +296,23 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAddRecordActionPerformed
 
     private void btnAddPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPetActionPerformed
-        AddPetFrame addPet = new AddPetFrame(txtFocusID.getText());
-        FetchApplication.addInternalFrame(this.getDesktopPane(), addPet);
-        addPet.setVisible(true);
-        addPet.moveToFront();
+        CustomerModel cust = new CustomerModel();
+        
+        if(this.getSelectedButtonText(btngFocus).equals("Customer")){
+            cust = CustomerModel.setFocus(Integer.parseInt(txtFocusID.getText()));
+                if(cust.getCustomerId() == -1){
+                    JOptionPane.showMessageDialog(null, "     Customer not found.", 
+                            "Customer ID Validation", JOptionPane.OK_OPTION); 
+                } else {
+                    AddPetFrame addPet = new AddPetFrame(txtFocusID.getText());
+                    FetchApplication.addInternalFrame(this.getDesktopPane(), addPet);
+                    addPet.setVisible(true);
+                    addPet.moveToFront();
+                }
+        } else {
+           JOptionPane.showMessageDialog(null, " Current focus must be set to customer to add a pet.",
+                   "Improper Focus Selected", JOptionPane.OK_OPTION);
+        }
     }//GEN-LAST:event_btnAddPetActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed

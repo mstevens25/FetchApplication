@@ -31,7 +31,6 @@ public class PetModel {
         this.breed = breed;
         this.customerId = customerId;
     }
-       
                
     public int getCustomerId() { return customerId; }
     public int getPetId() { return petId; }
@@ -56,7 +55,7 @@ public class PetModel {
             conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123"); 
             PreparedStatement stmt = conn.prepareStatement("insert into pet"
                 +    " (customerId, name, type, sex, breed)"
-                +    " values (?,?,?,?,?,?)");
+                +    " values (?,?,?,?,?)");
               
             stmt.setString(1, Integer.toString(pet.getCustomerId()));
             stmt.setString(2, pet.getName());

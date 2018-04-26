@@ -64,7 +64,7 @@ public class GroomerModel {
     public String getState() { return state; }
     public String getZip() { return zip; }
     
-    public void setGroomerId(int groomerID) {  this.groomerId = groomerId; }
+    public void setGroomerId(int groomerID) {  this.groomerId = groomerID; }
     public void setEmail(String email) { this.email = email; }
     public void setPass(String pass) { this.pass = pass; }
     public void setPhone(String phone) { this.phone = phone; }

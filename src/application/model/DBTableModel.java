@@ -86,17 +86,22 @@ public class DBTableModel {
         } else if (focus == "Pet") {
             sql = "SELECT * from pet";
             focusType = "petId"; 
-        } else {
+        } else if (focus == "Customer"){
             sql = "SELECT * from customer"; 
             focusType = "customerId"; 
+        } else {
+            sql = "SElECT * from groomer";
+            focusType = "zip";
         }
         
         if(sType == 1){
                 sql = sql.concat(" WHERE " + "email='" + search + "';");
             } else if (sType == 2){
                 sql = sql.concat(" WHERE " + "lastName='" + search + "';");
-            } else {
+            } else if (sType == 3) {
                 sql = sql.concat(" WHERE " + focusType + "='" + search + "';");
+            } else {
+                sql = sql.concat(" WHERE " + "zip='" + search + "';");
             }
         
         try {
@@ -127,6 +132,84 @@ public class DBTableModel {
       
     }
     
+    
+    public static void viewAppts(JTable table, int id, char type){
+        
+        String sql = null;
+        DefaultTableModel tblModel = null;
+        Connection conn = null;
+                        
+        
+        if (type == 'c') {
+            sql = "SELECT * from appointment WHERE customerId=" + id + ";"; 
+        } else if (type == 'g') {
+            sql = "SELECT * from appointment WHERE groomerId=" + id + ";";
+        }
+
+        
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123");             
+            Statement stmt = conn.createStatement();
+            
+            ResultSet rs = stmt.executeQuery(sql);
+            
+             // It creates and displays the table
+            tblModel = DBTableModel.buildTableModel(rs);
+
+            table.setModel(tblModel);
+            // Closes the Connection
+            //JOptionPane.showMessageDialog(null, new JScrollPane(table));
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        } finally{
+        
+            try{
+                if(conn != null)
+                conn.close(); }
+            catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+      
+    }
+    
+    public static void viewPets(JTable table, int id){
+        
+        String sql = "SELECT * from pet WHERE customerId=" + id+ ";";
+        DefaultTableModel tblModel = null;
+        Connection conn = null;
+                        
+        
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123");             
+            Statement stmt = conn.createStatement();
+            
+            ResultSet rs = stmt.executeQuery(sql);
+            
+             // It creates and displays the table
+            tblModel = DBTableModel.buildTableModel(rs);
+
+            table.setModel(tblModel);
+            // Closes the Connection
+            //JOptionPane.showMessageDialog(null, new JScrollPane(table));
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        } finally{
+        
+            try{
+                if(conn != null)
+                conn.close(); }
+            catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+      
+    }
+   
     
     public static DefaultTableModel buildTableModel(ResultSet rs)
         throws SQLException {
