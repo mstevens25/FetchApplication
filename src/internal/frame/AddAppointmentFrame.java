@@ -114,17 +114,21 @@ public class AddAppointmentFrame extends javax.swing.JInternalFrame {
 
         txtNotes.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         txtNotes.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNotes.setNextFocusableComponent(btnSubmit);
 
         lblNotes.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblNotes.setText("Notes:");
 
         txtGrmId.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        txtGrmId.setNextFocusableComponent(txtPetId);
 
         txtCustId.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        txtCustId.setNextFocusableComponent(txtGrmId);
 
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnClose.setText("Close");
+        btnClose.setNextFocusableComponent(dateAppt);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -135,6 +139,7 @@ public class AddAppointmentFrame extends javax.swing.JInternalFrame {
         btnSubmit.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setText("Submit");
+        btnSubmit.setNextFocusableComponent(btnClose);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -142,6 +147,7 @@ public class AddAppointmentFrame extends javax.swing.JInternalFrame {
         });
 
         txtPetId.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        txtPetId.setNextFocusableComponent(txtNotes);
 
         lblDate.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblDate.setText("Date:");
@@ -221,7 +227,9 @@ public class AddAppointmentFrame extends javax.swing.JInternalFrame {
                     .addComponent(btnClearGrm)))
         );
 
+        dateAppt.setFocusCycleRoot(true);
         dateAppt.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        dateAppt.setNextFocusableComponent(cmbTime);
 
         btnRefreshCustPet.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnRefreshCustPet.setText("Refresh Customer's Pets");
@@ -296,6 +304,7 @@ public class AddAppointmentFrame extends javax.swing.JInternalFrame {
 
         cmbTime.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "8:00 AM", "11:00 AM", "3:00 PM" }));
+        cmbTime.setNextFocusableComponent(txtCustId);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

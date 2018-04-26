@@ -12,7 +12,10 @@ import application.model.DBTableModel;
  * @author mattm
  */
 public class CSSearchFrame extends javax.swing.JInternalFrame {
-
+    
+    private int numResults;
+    public int getResult(){ return this.numResults; }
+    public void setResult(int numResults){ this.numResults = numResults; }
     /**
      * Creates new form CSSearchFrame
      */
@@ -23,6 +26,7 @@ public class CSSearchFrame extends javax.swing.JInternalFrame {
     public CSSearchFrame(String focusType, int sField, String search){
         initComponents();
         DBTableModel.searchData(tblSearchRs, focusType, sField, search);
+        this.setResult(tblSearchRs.getRowCount());
     }
 
     /**

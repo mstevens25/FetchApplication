@@ -6,12 +6,18 @@
 package internal.frame;
 
 import application.model.PetModel;
+import data.validation.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  *
@@ -19,11 +25,15 @@ import javax.swing.JOptionPane;
  */
 public class AddPetFrame extends javax.swing.JInternalFrame {
 
+    DocumentFilter nameFilter = new NameFilter();
     /**
      * Creates new form AddPetFrame
      */
     public AddPetFrame() {
         initComponents();
+        
+        ((AbstractDocument)txtPetName.getDocument()).setDocumentFilter(nameFilter);
+        ((AbstractDocument)txtBreed.getDocument()).setDocumentFilter(nameFilter);
         
         Toolkit tk = Toolkit.getDefaultToolkit();
             int xsize = (int) tk.getScreenSize().getWidth();
@@ -37,6 +47,9 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
     
     public AddPetFrame(String focusID) {
         initComponents();
+        
+        ((AbstractDocument)txtPetName.getDocument()).setDocumentFilter(nameFilter);
+        ((AbstractDocument)txtBreed.getDocument()).setDocumentFilter(nameFilter);
         
         this.setOwnerID(focusID);
         
@@ -72,10 +85,10 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
-        rdbMale = new javax.swing.JRadioButton();
-        rdbFemale = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rbtMale = new javax.swing.JRadioButton();
+        rbtFemale = new javax.swing.JRadioButton();
+        rbtDog = new javax.swing.JRadioButton();
+        rbtCat = new javax.swing.JRadioButton();
         lblOwnerIDValue = new javax.swing.JLabel();
 
         setClosable(true);
@@ -90,6 +103,7 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
 
         txtPetName.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         txtPetName.setFocusCycleRoot(true);
+        txtPetName.setNextFocusableComponent(rbtDog);
 
         lblPetType.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblPetType.setText("Pet Type:");
@@ -101,12 +115,16 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
         lblBreed.setText("Breed:");
 
         txtBreed.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        txtBreed.setNextFocusableComponent(btnSubmit);
 
-        lblOwnerID.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        lblOwnerID.setFont(new java.awt.Font("Book Antiqua", 1, 14)); // NOI18N
         lblOwnerID.setText("Owner ID:");
 
+        btnSubmit.setBackground(new java.awt.Color(51, 51, 255));
         btnSubmit.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setText("Submit");
+        btnSubmit.setNextFocusableComponent(btnReset);
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
@@ -115,6 +133,7 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
 
         btnReset.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnReset.setText("Reset");
+        btnReset.setNextFocusableComponent(btnClose);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
@@ -124,27 +143,34 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnClose.setText("Close");
+        btnClose.setNextFocusableComponent(txtPetName);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
             }
         });
 
-        btngSex.add(rdbMale);
-        rdbMale.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        rdbMale.setText("Male");
+        btngSex.add(rbtMale);
+        rbtMale.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbtMale.setSelected(true);
+        rbtMale.setText("Male");
+        rbtMale.setNextFocusableComponent(rbtFemale);
 
-        btngSex.add(rdbFemale);
-        rdbFemale.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        rdbFemale.setText("Female");
+        btngSex.add(rbtFemale);
+        rbtFemale.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbtFemale.setText("Female");
+        rbtFemale.setNextFocusableComponent(txtBreed);
 
-        btngPetType.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        jRadioButton1.setText("Dog");
+        btngPetType.add(rbtDog);
+        rbtDog.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbtDog.setSelected(true);
+        rbtDog.setText("Dog");
+        rbtDog.setNextFocusableComponent(rbtCat);
 
-        btngPetType.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        jRadioButton2.setText("Cat");
+        btngPetType.add(rbtCat);
+        rbtCat.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbtCat.setText("Cat");
+        rbtCat.setNextFocusableComponent(rbtMale);
 
         lblOwnerIDValue.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblOwnerIDValue.setText("Invalid");
@@ -168,9 +194,9 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rdbMale)
+                        .addComponent(rbtMale)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rdbFemale)
+                        .addComponent(rbtFemale)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSubmit)
                         .addGap(18, 18, 18)
@@ -179,9 +205,9 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPetName, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rbtDog)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2)))
+                                .addComponent(rbtCat)))
                         .addGap(34, 34, 34)
                         .addComponent(lblOwnerID)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -206,12 +232,12 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
                     .addComponent(lblPetType)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
+                            .addComponent(rbtDog)
+                            .addComponent(rbtCat))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdbMale)
-                            .addComponent(rdbFemale)
+                            .addComponent(rbtMale)
+                            .addComponent(rbtFemale)
                             .addComponent(lblPetSex)
                             .addComponent(btnReset)
                             .addComponent(btnSubmit))
@@ -248,27 +274,44 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
                 selectedSex = this.getSelectedButtonText(btngSex);
         
         char petSex = selectedSex.charAt(0);
-        
-        if (selectedType == "--") selectedType = "";
-
-        if (selectedType == "") {
-            JOptionPane.showMessageDialog(null, "Unable to Add New Pet", "Result", JOptionPane.OK_OPTION);
+         
+        if (txtPetName.getDocument().getLength() < 1) {
+            JOptionPane.showMessageDialog(null, "Unable to Add New Pet", "No Name Entered", JOptionPane.OK_OPTION);
+        } else if (txtBreed.getDocument().getLength() < 1) {
+            JOptionPane.showMessageDialog(null, "Unable to Add New Pet", "No Breed Entered", JOptionPane.OK_OPTION);
         } else {
             
-            PetModel tempPet = new PetModel(txtPetName.getText(), selectedType, petSex,
-                txtBreed.getText(), Integer.parseInt(lblOwnerIDValue.getText()));
+            String petName = "",
+                    breed = "";
+            try {
+                petName = txtPetName.getDocument().getText(0, txtPetName.getDocument().getLength());
+                breed = txtBreed.getDocument().getText(0, txtBreed.getDocument().getLength());
+            } catch (BadLocationException ex) {
+                Logger.getLogger(AddPetFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            PetModel tempPet = new PetModel(petName, selectedType, petSex,
+                breed, Integer.parseInt(lblOwnerIDValue.getText()));
 
 
             PetModel.addPet(tempPet);
             
-        txtPetName.setText("");
-        txtBreed.setText("");
+            try {
+                txtPetName.getDocument().remove(0, txtPetName.getDocument().getLength());
+                txtBreed.getDocument().remove(0, txtBreed.getDocument().getLength());
+            } catch (BadLocationException ex) {
+                Logger.getLogger(AddPetFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_btnSubmitActionPerformed
     }
     
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        txtPetName.setText("");
-        txtBreed.setText("");
+        try {
+            txtPetName.getDocument().remove(0, txtPetName.getDocument().getLength());
+            txtBreed.getDocument().remove(0, txtBreed.getDocument().getLength());
+        } catch (BadLocationException ex) {
+            Logger.getLogger(AddPetFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -297,16 +340,16 @@ public class AddPetFrame extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup btngPetType;
     private javax.swing.ButtonGroup btngSex;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel lblBreed;
     private javax.swing.JLabel lblOwnerID;
     private javax.swing.JLabel lblOwnerIDValue;
     private javax.swing.JLabel lblPetName;
     private javax.swing.JLabel lblPetSex;
     private javax.swing.JLabel lblPetType;
-    private javax.swing.JRadioButton rdbFemale;
-    private javax.swing.JRadioButton rdbMale;
+    private javax.swing.JRadioButton rbtCat;
+    private javax.swing.JRadioButton rbtDog;
+    private javax.swing.JRadioButton rbtFemale;
+    private javax.swing.JRadioButton rbtMale;
     private javax.swing.JTextField txtBreed;
     private javax.swing.JTextField txtPetName;
     // End of variables declaration//GEN-END:variables

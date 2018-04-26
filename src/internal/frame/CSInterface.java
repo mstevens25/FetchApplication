@@ -55,8 +55,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
         btnModify = new javax.swing.JButton();
         btnAddPet = new javax.swing.JButton();
         pnlCurrentFocus = new javax.swing.JPanel();
-        rbCustomer = new javax.swing.JRadioButton();
-        rbGroomer = new javax.swing.JRadioButton();
+        rbtCustomer = new javax.swing.JRadioButton();
+        rbtGroomer = new javax.swing.JRadioButton();
         btnAddRecord = new javax.swing.JButton();
         pnlSearch = new javax.swing.JPanel();
         lblField1 = new javax.swing.JLabel();
@@ -70,7 +70,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
         setTitle("CUSTOMER SERVICE PORTAL");
         setFocusTraversalPolicyProvider(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/internal/frame/dog_bowl.jpg"))); // NOI18N
-        setPreferredSize(new java.awt.Dimension(624, 307));
+        setPreferredSize(new java.awt.Dimension(700, 305));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -92,12 +92,14 @@ public class CSInterface extends javax.swing.JInternalFrame {
         pnlModify.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modify", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
         txtFocusID.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        txtFocusID.setNextFocusableComponent(btnModify);
 
         lblFocusID.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblFocusID.setText("ID Number:");
 
         btnModify.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnModify.setText("Modify Record");
+        btnModify.setNextFocusableComponent(btnAddPet);
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
@@ -106,6 +108,7 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         btnAddPet.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnAddPet.setText("Add Pet (Customer Only)");
+        btnAddPet.setNextFocusableComponent(cmbField1);
         btnAddPet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddPetActionPerformed(evt);
@@ -146,17 +149,21 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         pnlCurrentFocus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Focus", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Book Antiqua", 0, 18))); // NOI18N
 
-        btngFocus.add(rbCustomer);
-        rbCustomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        rbCustomer.setSelected(true);
-        rbCustomer.setText("Customer");
+        btngFocus.add(rbtCustomer);
+        rbtCustomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbtCustomer.setSelected(true);
+        rbtCustomer.setText("Customer");
+        rbtCustomer.setFocusCycleRoot(true);
+        rbtCustomer.setNextFocusableComponent(rbtGroomer);
 
-        btngFocus.add(rbGroomer);
-        rbGroomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
-        rbGroomer.setText("Groomer");
+        btngFocus.add(rbtGroomer);
+        rbtGroomer.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        rbtGroomer.setText("Groomer");
+        rbtGroomer.setNextFocusableComponent(btnAddRecord);
 
         btnAddRecord.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnAddRecord.setText("Add Record");
+        btnAddRecord.setNextFocusableComponent(txtFocusID);
         btnAddRecord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddRecordActionPerformed(evt);
@@ -169,9 +176,9 @@ public class CSInterface extends javax.swing.JInternalFrame {
             pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rbCustomer)
+                .addComponent(rbtCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbGroomer)
+                .addComponent(rbtGroomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(btnAddRecord)
                 .addContainerGap())
@@ -180,8 +187,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
             pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCurrentFocusLayout.createSequentialGroup()
                 .addGroup(pnlCurrentFocusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbCustomer)
-                    .addComponent(rbGroomer)
+                    .addComponent(rbtCustomer)
+                    .addComponent(rbtGroomer)
                     .addComponent(btnAddRecord))
                 .addGap(0, 9, Short.MAX_VALUE))
         );
@@ -193,9 +200,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
 
         cmbField1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         cmbField1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------------", "Email", "Last Name", "ID Number" }));
+        cmbField1.setNextFocusableComponent(txtField1);
 
         btnSearch.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnSearch.setText("Search");
+        btnSearch.setNextFocusableComponent(rbtCustomer);
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -203,9 +212,11 @@ public class CSInterface extends javax.swing.JInternalFrame {
         });
 
         txtField1.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
+        txtField1.setNextFocusableComponent(btnClear);
 
         btnClear.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnClear.setText("Clear");
+        btnClear.setNextFocusableComponent(btnSearch);
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
@@ -220,17 +231,17 @@ public class CSInterface extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSearchLayout.createSequentialGroup()
-                        .addComponent(lblField1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlSearchLayout.createSequentialGroup()
                         .addGap(165, 165, 165)
                         .addComponent(btnClear)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSearch)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnSearch))
+                    .addGroup(pnlSearchLayout.createSequentialGroup()
+                        .addComponent(lblField1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbField1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         pnlSearchLayout.setVerticalGroup(
             pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,12 +265,14 @@ public class CSInterface extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlCurrentFocus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlModify, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnlSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,6 +372,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        JTable tempTable = null;
+        
         String fieldOne = null,
                sType = this.getSelectedButtonText(btngFocus); 
         int sField = cmbField1.getSelectedIndex();
@@ -373,9 +388,15 @@ public class CSInterface extends javax.swing.JInternalFrame {
                             "Search Field Check", JOptionPane.OK_OPTION);
         } else {
             CSSearchFrame sFrame = new CSSearchFrame(sType, sField, this.txtField1.getText());
-            FetchApplication.addInternalFrame(this.getDesktopPane(), sFrame);
-            sFrame.setVisible(true);
-            sFrame.moveToFront();
+            
+            if(sFrame.getResult() != 0){
+                FetchApplication.addInternalFrame(this.getDesktopPane(), sFrame);
+                sFrame.setVisible(true);
+                sFrame.moveToFront();
+            } else {
+                JOptionPane.showMessageDialog(null, "No record found.",
+                "Search Results", JOptionPane.OK_OPTION);
+            }
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -404,8 +425,8 @@ public class CSInterface extends javax.swing.JInternalFrame {
     private javax.swing.JPanel pnlCurrentFocus;
     private javax.swing.JPanel pnlModify;
     private javax.swing.JPanel pnlSearch;
-    private javax.swing.JRadioButton rbCustomer;
-    private javax.swing.JRadioButton rbGroomer;
+    private javax.swing.JRadioButton rbtCustomer;
+    private javax.swing.JRadioButton rbtGroomer;
     private javax.swing.JTextField txtField1;
     private javax.swing.JTextField txtFocusID;
     // End of variables declaration//GEN-END:variables

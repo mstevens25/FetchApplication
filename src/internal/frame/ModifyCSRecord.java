@@ -186,6 +186,7 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
         btnClose.setBackground(new java.awt.Color(255, 102, 102));
         btnClose.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnClose.setText("Close");
+        btnClose.setNextFocusableComponent(btnAddAppt);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -195,7 +196,7 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
         lblFocusID.setFont(new java.awt.Font("Book Antiqua", 1, 14)); // NOI18N
         lblFocusID.setText("ID Number:");
 
-        lblFocusIDValue.setFont(new java.awt.Font("Book Antiqua", 1, 14)); // NOI18N
+        lblFocusIDValue.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         lblFocusIDValue.setText("******");
 
         txtFirstName.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
@@ -230,6 +231,7 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
 
         btnViewAppts.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnViewAppts.setText("View Appointments");
+        btnViewAppts.setNextFocusableComponent(btnClose);
         btnViewAppts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewApptsActionPerformed(evt);
@@ -238,6 +240,7 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
 
         btnModAppt.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnModAppt.setText("Modify Appointment");
+        btnModAppt.setNextFocusableComponent(btnViewAppts);
         btnModAppt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModApptActionPerformed(evt);
@@ -246,6 +249,8 @@ public class ModifyCSRecord extends javax.swing.JInternalFrame {
 
         btnAddAppt.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         btnAddAppt.setText("Add Appointment");
+        btnAddAppt.setFocusCycleRoot(true);
+        btnAddAppt.setNextFocusableComponent(btnModAppt);
         btnAddAppt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddApptActionPerformed(evt);

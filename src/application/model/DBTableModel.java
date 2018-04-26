@@ -16,6 +16,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,53 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author mattm
  */
 public class DBTableModel {
-    
-    
-    public static void getData(JTable table, String focus){
-        
-        String sql = null;
-        DefaultTableModel tblModel = null;
-        Connection conn = null;
-                        
-        
-        if (focus == "Groomer") {
-            sql = "select * from groomer"; }
-        else if (focus == "Pet") {
-            sql = "select * from pet"; }
-        else {
-            sql = "select * from customer"; }
-         
-        
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123"); 
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            
-             // It creates and displays the table
-            tblModel = DBTableModel.buildTableModel(rs);
-
-            table.setModel(tblModel);
-            // Closes the Connection
-            //JOptionPane.showMessageDialog(null, new JScrollPane(table));
-            
-            
-        
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        } finally{
-        
-            try{
-                if(conn != null)
-                conn.close(); }
-            catch(SQLException se){
-                se.printStackTrace();
-            }
-        }
-      
-    }
-    
+     
     
     public static void searchData(JTable table, String focus, int sType, String search){
         
@@ -105,17 +60,14 @@ public class DBTableModel {
             }
         
         try {
+            
             conn = DriverManager.getConnection("jdbc:mysql://fetch-mobile-grooming.mysql.database.azure.com/Fetchdb", "malderson@fetch-mobile-grooming", "Puppy123");             
             Statement stmt = conn.createStatement();
             
             ResultSet rs = stmt.executeQuery(sql);
-            
-             // It creates and displays the table
-            tblModel = DBTableModel.buildTableModel(rs);
 
+            tblModel = DBTableModel.buildTableModel(rs);
             table.setModel(tblModel);
-            // Closes the Connection
-            //JOptionPane.showMessageDialog(null, new JScrollPane(table));
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,14 +104,14 @@ public class DBTableModel {
             Statement stmt = conn.createStatement();
             
             ResultSet rs = stmt.executeQuery(sql);
-            
-             // It creates and displays the table
+
+            // It creates and displays the table
             tblModel = DBTableModel.buildTableModel(rs);
 
             table.setModel(tblModel);
             // Closes the Connection
             //JOptionPane.showMessageDialog(null, new JScrollPane(table));
-            
+         
         } catch (SQLException e) {
             e.printStackTrace();
             return;
@@ -187,8 +139,8 @@ public class DBTableModel {
             Statement stmt = conn.createStatement();
             
             ResultSet rs = stmt.executeQuery(sql);
-            
-             // It creates and displays the table
+
+            // It creates and displays the table
             tblModel = DBTableModel.buildTableModel(rs);
 
             table.setModel(tblModel);
@@ -233,7 +185,7 @@ public class DBTableModel {
             
             data.add(vector);
         }
-
+        
         return new DefaultTableModel(data, columnNames);
     }
 }
